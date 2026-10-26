@@ -8,10 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Prompt -->
+    <!-- Google Fonts: Itim (ไอติม) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -19,25 +19,26 @@
                 extend: {
                     colors: {
                         pastel: {
-                            pink: '#FFD1DC',
-                            pinkDark: '#FF9EAA',
+                            pink: '#FFC2D1',
+                            pinkDark: '#FFA6B9',
                             pinkLight: '#FFF0F3',
-                            pinkDeep: '#FF6B8B',
-                            cream: '#FFF9F5',
-                            softWhite: '#FAFAFA',
+                            pinkDeep: '#FF5C8A',
+                            cream: '#FFF7F2',
+                            softWhite: '#FFFFFF',
                             cardBg: '#FFFFFF',
-                            purplePastel: '#E8D5C4',
-                            yellowPastel: '#FEF3C7',
-                            greenPastel: '#D1FAE5',
-                            redPastel: '#FEE2E2',
+                            purplePastel: '#F3E8FF',
+                            yellowPastel: '#FEF08A',
+                            greenPastel: '#DCFCE7',
+                            redPastel: '#FFE4E6',
                         }
                     },
                     fontFamily: {
-                        prompt: ['Prompt', 'sans-serif'],
+                        prompt: ['Itim', 'cursive'],
                     },
                     boxShadow: {
-                        'soft-pink': '0 10px 25px -5px rgba(255, 158, 170, 0.25), 0 8px 10px -6px rgba(255, 158, 170, 0.1)',
-                        'card-hover': '0 15px 30px -5px rgba(255, 107, 139, 0.3)',
+                        'soft-pink': '0 12px 30px -8px rgba(255, 92, 138, 0.22), 0 4px 12px -4px rgba(255, 166, 185, 0.15)',
+                        'card-hover': '0 20px 35px -8px rgba(255, 92, 138, 0.35)',
+                        'cute-btn': '0 6px 15px rgba(255, 92, 138, 0.3)',
                     }
                 }
             }
@@ -45,90 +46,94 @@
     </script>
     <style>
         body {
-            font-family: 'Prompt', sans-serif;
-            background: linear-gradient(135deg, #FFF0F3 0%, #FFF9F5 50%, #FFE5EC 100%);
+            font-family: 'Itim', cursive;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFF9F5 50%, #FFE4EE 100%);
             min-height: 100vh;
+            letter-spacing: 0.5px;
         }
         .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #FFF0F3;
-            border-radius: 10px;
+            border-radius: 12px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #FF9EAA;
-            border-radius: 10px;
+            background: #FFA6B9;
+            border-radius: 12px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #FF6B8B;
+            background: #FF5C8A;
         }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 209, 220, 0.5);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 194, 209, 0.6);
         }
         .badge-pulse {
-            box-shadow: 0 0 0 0 rgba(255, 107, 139, 0.7);
+            box-shadow: 0 0 0 0 rgba(255, 92, 138, 0.7);
             animation: pulse-pink 2s infinite;
         }
         @keyframes pulse-pink {
             0% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 107, 139, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 92, 138, 0.7);
             }
             70% {
                 transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(255, 107, 139, 0);
+                box-shadow: 0 0 0 12px rgba(255, 92, 138, 0);
             }
             100% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 107, 139, 0);
+                box-shadow: 0 0 0 0 rgba(255, 92, 138, 0);
             }
+        }
+        input, select, textarea {
+            font-family: 'Itim', cursive !important;
         }
     </style>
 </head>
 <body class="text-gray-700 pb-12 flex flex-col min-h-screen">
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-40 glass-panel shadow-sm border-b border-pastel-pink">
+    <header class="sticky top-0 z-40 glass-panel shadow-sm border-b-2 border-pastel-pink">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('user-submit')">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pastel-pinkDark to-pastel-pinkDeep flex items-center justify-center text-white text-2xl shadow-md transform hover:rotate-6 transition-transform">
-                    <i class="fa-solid fa-store"></i>
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('user-submit')">
+                <div class="w-13 h-13 rounded-3xl bg-gradient-to-tr from-pastel-pinkDark to-pastel-pinkDeep flex items-center justify-center text-white text-2xl shadow-cute-btn transform group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fa-solid fa-store animate-pulse"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold bg-gradient-to-r from-pastel-pinkDeep to-pink-500 bg-clip-text text-transparent">Agent Verify</h1>
-                    <p class="text-xs text-gray-500">ระบบยืนยันยูสเซอร์ตัวแทนร้านค้า</p>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-pastel-pinkDeep to-pink-400 bg-clip-text text-transparent drop-shadow-xs">Agent Verify ✨</h1>
+                    <p class="text-xs text-gray-500 font-medium">ระบบยืนยันยูสเซอร์ตัวแทนร้านค้าสุดน่ารัก</p>
                 </div>
             </div>
 
             <!-- Global Counter Badge (Customer Requirement) -->
-            <div class="hidden md:flex items-center bg-white/80 px-4 py-2 rounded-full border border-pastel-pink shadow-sm">
-                <i class="fa-solid fa-users text-pastel-pinkDeep mr-2"></i>
-                <span class="text-xs font-medium text-gray-600">คำขอยืนยันทั้งหมดในระบบ: </span>
-                <span id="global-total-counter" class="text-sm font-bold text-pastel-pinkDeep ml-1.5 bg-pastel-pinkLight px-2.5 py-0.5 rounded-full border border-pastel-pink">0</span>
+            <div class="hidden md:flex items-center bg-white/90 px-5 py-2.5 rounded-full border-2 border-pastel-pink shadow-sm">
+                <i class="fa-solid fa-users text-pastel-pinkDeep mr-2 text-lg"></i>
+                <span class="text-xs font-semibold text-gray-600">คำขอยืนยันทั้งหมดในระบบ: </span>
+                <span id="global-total-counter" class="text-sm font-bold text-pastel-pinkDeep ml-2 bg-pastel-pinkLight px-3 py-0.5 rounded-full border border-pastel-pink shadow-inner">0</span>
             </div>
 
             <!-- Navigation Tabs & Admin Toggle -->
             <div class="flex items-center space-x-2">
-                <nav class="flex bg-white/60 p-1.5 rounded-2xl border border-pastel-pink shadow-inner">
-                    <button id="nav-user" onclick="switchTab('user-submit')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2 bg-pastel-pinkDeep text-white shadow-sm">
+                <nav class="flex bg-white/80 p-1.5 rounded-3xl border-2 border-pastel-pink shadow-inner">
+                    <button id="nav-user" onclick="switchTab('user-submit')" class="px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center space-x-2 bg-pastel-pinkDeep text-white shadow-cute-btn">
                         <i class="fa-solid fa-user-plus"></i>
                         <span class="hidden sm:inline">ส่งข้อมูลยืนยัน</span>
                     </button>
-                    <button id="nav-status" onclick="switchTab('user-status')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2 text-gray-600 hover:text-pastel-pinkDeep">
+                    <button id="nav-status" onclick="switchTab('user-status')" class="px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-gray-600 hover:text-pastel-pinkDeep hover:bg-pink-50">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <span class="hidden sm:inline">เช็คสถานะ</span>
                     </button>
                 </nav>
 
-                <div class="h-8 w-px bg-pastel-pink"></div>
+                <div class="h-8 w-0.5 bg-pastel-pink/70"></div>
 
                 <!-- Admin Mode Switch -->
-                <button id="nav-admin-btn" onclick="openAdminModal()" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-white border-2 border-pastel-pinkDark text-pastel-pinkDeep hover:bg-pastel-pinkLight flex items-center space-x-2 shadow-sm">
-                    <i class="fa-solid fa-user-shield"></i>
+                <button id="nav-admin-btn" onclick="openAdminModal()" class="px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-white border-2 border-pastel-pinkDark text-pastel-pinkDeep hover:bg-pastel-pinkLight flex items-center space-x-2 shadow-cute-btn active:scale-95">
+                    <i class="fa-solid fa-user-shield text-base"></i>
                     <span id="admin-btn-text" class="hidden md:inline">เข้าสู่ระบบแอดมิน</span>
                 </button>
             </div>
@@ -139,79 +144,79 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 flex-grow w-full">
 
         <!-- Announcement / Global Stat Header Mobile -->
-        <div class="md:hidden mb-6 bg-white/80 p-4 rounded-2xl border border-pastel-pink shadow-sm flex items-center justify-between">
+        <div class="md:hidden mb-6 bg-white/90 p-4 rounded-3xl border-2 border-pastel-pink shadow-sm flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-chart-line text-pastel-pinkDeep"></i>
-                <span class="text-xs font-medium text-gray-600">คำขอยืนยันในระบบทั้งหมด:</span>
+                <i class="fa-solid fa-chart-line text-pastel-pinkDeep text-lg"></i>
+                <span class="text-xs font-semibold text-gray-600">คำขอยืนยันในระบบทั้งหมด:</span>
             </div>
-            <span id="global-total-counter-mobile" class="text-sm font-bold text-pastel-pinkDeep bg-pastel-pinkLight px-3 py-1 rounded-full border border-pastel-pink">0</span>
+            <span id="global-total-counter-mobile" class="text-sm font-bold text-pastel-pinkDeep bg-pastel-pinkLight px-3.5 py-1 rounded-full border border-pastel-pink shadow-inner">0</span>
         </div>
 
         <!-- SECTION 1: CUSTOMER FORM (ส่งข้อมูลยืนยัน) -->
         <section id="section-user-submit" class="block animate-fade-in">
-            <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-pastel-pink shadow-soft-pink relative overflow-hidden">
+            <div class="max-w-2xl mx-auto bg-white rounded-[2.5rem] p-6 sm:p-10 border-2 border-pastel-pink shadow-soft-pink relative overflow-hidden">
                 <!-- Decorative BG Element -->
-                <div class="absolute -top-12 -right-12 w-32 h-32 bg-pastel-pinkLight rounded-full blur-xl pointer-events-none"></div>
-                <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-pastel-yellowPastel rounded-full blur-xl pointer-events-none"></div>
+                <div class="absolute -top-12 -right-12 w-36 h-36 bg-pastel-pinkLight rounded-full blur-2xl pointer-events-none opacity-80"></div>
+                <div class="absolute -bottom-12 -left-12 w-36 h-36 bg-pastel-yellowPastel rounded-full blur-2xl pointer-events-none opacity-80"></div>
 
                 <div class="text-center mb-8 relative">
-                    <span class="inline-block px-3 py-1 bg-pastel-pinkLight text-pastel-pinkDeep text-xs font-semibold rounded-full border border-pastel-pink mb-2">
-                        <i class="fa-solid fa-sparkles mr-1"></i> สำหรับตัวแทนร้านค้า
+                    <span class="inline-flex items-center px-4 py-1.5 bg-pastel-pinkLight text-pastel-pinkDeep text-xs font-bold rounded-full border-2 border-pastel-pink mb-3 shadow-2xs">
+                        <i class="fa-solid fa-heart text-pink-500 mr-1.5 animate-bounce"></i> สำหรับตัวแทนร้านค้าสุดน่ารัก
                     </span>
-                    <h2 class="text-2xl font-bold text-gray-800">ลงทะเบียนยืนยันตัวตนยูสเซอร์</h2>
-                    <p class="text-xs sm:text-sm text-gray-500 mt-1">กรอกข้อมูลให้ครบถ้วนเพื่อรอการตรวจสอบและปรับยศบนเว็บกดแอปพรีเมียม</p>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">ลงทะเบียนยืนยันตัวตนยูสเซอร์ 🧁</h2>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-1.5">กรอกข้อมูลให้ครบถ้วนเพื่อรอการตรวจสอบและปรับยศบนเว็บกดแอปพรีเมียมนะก๊ะ</p>
                 </div>
 
-                <form id="verify-form" onsubmit="handleUserSubmit(event)" class="space-y-5 relative">
+                <form id="verify-form" onsubmit="handleUserSubmit(event)" class="space-y-6 relative">
                     <!-- User Name Field -->
                     <div>
-                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5">
-                            <i class="fa-solid fa-user-tag text-pastel-pinkDeep mr-1"></i> ชื่อยูสเซอร์กดแอป (Username) <span class="text-red-400">*</span>
+                        <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">
+                            <i class="fa-solid fa-user-tag text-pastel-pinkDeep mr-1.5"></i> ชื่อยูสเซอร์กดแอป (Username) <span class="text-pink-500">*</span>
                         </label>
-                        <input type="text" id="input-username" required placeholder="เช่น agent_num1 หรือ user_vip" class="w-full px-4 py-3 rounded-2xl border border-pastel-pink focus:border-pastel-pinkDeep focus:ring-2 focus:ring-pastel-pinkDeep/20 outline-none transition-all text-sm bg-pastel-softWhite">
+                        <input type="text" id="input-username" required placeholder="เช่น agent_num1 หรือ user_vip" class="w-full px-5 py-3.5 rounded-2xl border-2 border-pastel-pink focus:border-pastel-pinkDeep focus:ring-4 focus:ring-pastel-pinkDeep/20 outline-none transition-all text-sm bg-pastel-softWhite shadow-inner">
                     </div>
 
                     <!-- Contact Info Field -->
                     <div>
-                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5">
-                            <i class="fa-solid fa-address-book text-pastel-pinkDeep mr-1"></i> ช่องทางการติดต่อ (Line ID / เบอร์โทร) <span class="text-red-400">*</span>
+                        <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">
+                            <i class="fa-solid fa-address-book text-pastel-pinkDeep mr-1.5"></i> ช่องทางการติดต่อ (Line ID / เบอร์โทร) <span class="text-pink-500">*</span>
                         </label>
-                        <input type="text" id="input-contact" required placeholder="เช่น Line: @agent123 หรือ 081-234-5678" class="w-full px-4 py-3 rounded-2xl border border-pastel-pink focus:border-pastel-pinkDeep focus:ring-2 focus:ring-pastel-pinkDeep/20 outline-none transition-all text-sm bg-pastel-softWhite">
+                        <input type="text" id="input-contact" required placeholder="เช่น Line: @agent123 หรือ 081-234-5678" class="w-full px-5 py-3.5 rounded-2xl border-2 border-pastel-pink focus:border-pastel-pinkDeep focus:ring-4 focus:ring-pastel-pinkDeep/20 outline-none transition-all text-sm bg-pastel-softWhite shadow-inner">
                     </div>
 
                     <!-- Store Image Upload & Compression -->
                     <div>
-                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5">
-                            <i class="fa-solid fa-store text-pastel-pinkDeep mr-1"></i> อัปโหลดรูปภาพหน้าร้านของตัวแทน <span class="text-red-400">*</span>
+                        <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">
+                            <i class="fa-solid fa-store text-pastel-pinkDeep mr-1.5"></i> อัปโหลดรูปภาพหน้าร้านของตัวแทน <span class="text-pink-500">*</span>
                         </label>
                         
-                        <div id="drop-zone" class="border-2 border-dashed border-pastel-pinkDark hover:border-pastel-pinkDeep rounded-2xl p-4 text-center bg-pastel-pinkLight/30 transition-all cursor-pointer relative">
+                        <div id="drop-zone" class="border-3 border-dashed border-pastel-pinkDark hover:border-pastel-pinkDeep rounded-3xl p-6 text-center bg-pastel-pinkLight/40 transition-all cursor-pointer relative shadow-xs hover:shadow-md">
                             <input type="file" id="input-image" accept="image/*" required onchange="handleImageSelect(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                             
                             <!-- Placeholder View -->
-                            <div id="upload-placeholder" class="py-4 space-y-2">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto text-pastel-pinkDeep shadow-sm border border-pastel-pink">
-                                    <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
+                            <div id="upload-placeholder" class="py-4 space-y-3">
+                                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto text-pastel-pinkDeep shadow-md border-2 border-pastel-pink transform hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
                                 </div>
-                                <div class="text-xs sm:text-sm text-gray-600 font-medium">คลิกเพื่อเลือกรูปภาพหน้าร้านจากเครื่อง</div>
-                                <p class="text-[10px] text-gray-400">รองรับไฟล์ JPG, PNG (ระบบจะบีบอัดรูปภาพให้อัตโนมัติก่อนบันทึก)</p>
+                                <div class="text-xs sm:text-sm text-gray-700 font-bold">คลิกหรือลากเพื่อเลือกรูปภาพหน้าร้านจากเครื่อง 📸</div>
+                                <p class="text-[11px] text-gray-400">รองรับไฟล์ JPG, PNG (ระบบบีบอัดให้อัตโนมัติจ้า)</p>
                             </div>
 
                             <!-- Preview View -->
                             <div id="upload-preview-container" class="hidden relative group">
-                                <img id="image-preview" src="" alt="ตัวอย่างหน้าร้าน" class="max-h-56 mx-auto rounded-xl shadow-md border border-pastel-pink object-cover">
-                                <div class="mt-2 text-xs text-pastel-pinkDeep font-semibold flex items-center justify-center gap-2">
-                                    <span id="image-info-tag" class="bg-white px-2 py-1 rounded-md border border-pastel-pink shadow-2xs"></span>
-                                    <span class="text-gray-400 text-[11px]">(คลิกรูปเพื่อเปลี่ยน)</span>
+                                <img id="image-preview" src="" alt="ตัวอย่างหน้าร้าน" class="max-h-60 mx-auto rounded-2xl shadow-lg border-2 border-pastel-pink object-cover">
+                                <div class="mt-3 text-xs text-pastel-pinkDeep font-bold flex items-center justify-center gap-2">
+                                    <span id="image-info-tag" class="bg-white px-3 py-1 rounded-xl border-2 border-pastel-pink shadow-xs"></span>
+                                    <span class="text-gray-400 text-[11px]">(คลิกรูปเพื่อเปลี่ยนใหม่)</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" id="submit-btn" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-pastel-pinkDark to-pastel-pinkDeep hover:from-pastel-pinkDeep hover:to-pink-600 text-white font-semibold text-sm sm:text-base shadow-soft-pink transform active:scale-95 transition-all flex items-center justify-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>ส่งข้อมูลเพื่อรอการตรวจสอบ</span>
+                    <button type="submit" id="submit-btn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-pastel-pinkDark via-pastel-pinkDeep to-pink-500 hover:from-pastel-pinkDeep hover:to-pink-600 text-white font-bold text-base sm:text-lg shadow-cute-btn transform active:scale-95 transition-all flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-paper-plane text-xl"></i>
+                        <span>ส่งข้อมูลเพื่อรอการตรวจสอบ 💖</span>
                     </button>
                 </form>
             </div>
@@ -221,32 +226,32 @@
         <section id="section-user-status" class="hidden animate-fade-in">
             <div class="max-w-3xl mx-auto space-y-6">
                 <!-- Search Box -->
-                <div class="bg-white p-6 rounded-3xl border border-pastel-pink shadow-soft-pink">
-                    <h2 class="text-xl font-bold text-gray-800 mb-2 text-center">ค้นหาคำขอยืนยันตัวตน</h2>
-                    <p class="text-xs text-gray-500 text-center mb-6">กรอกชื่อยูสเซอร์กดแอปของคุณเพื่อตรวจสอบสถานะการยืนยันและการปรับยศ</p>
+                <div class="bg-white p-6 sm:p-8 rounded-[2.5rem] border-2 border-pastel-pink shadow-soft-pink">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">ค้นหาคำขอยืนยันตัวตน 🔍</h2>
+                    <p class="text-xs sm:text-sm text-gray-500 text-center mb-6">กรอกชื่อยูสเซอร์กดแอปของคุณเพื่อตรวจสอบสถานะการยืนยันและการปรับยศได้เลย</p>
                     
-                    <div class="flex flex-col sm:flex-row gap-2">
+                    <div class="flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-1">
-                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" id="search-username-input" placeholder="พิมพ์ชื่อยูสเซอร์ เช่น agent_num1" class="w-full pl-11 pr-4 py-3 rounded-2xl border border-pastel-pink focus:border-pastel-pinkDeep outline-none text-sm bg-pastel-softWhite">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-pastel-pinkDeep text-lg"></i>
+                            <input type="text" id="search-username-input" placeholder="พิมพ์ชื่อยูสเซอร์ เช่น agent_num1" class="w-full pl-12 pr-4 py-3.5 rounded-2xl border-2 border-pastel-pink focus:border-pastel-pinkDeep outline-none text-sm bg-pastel-softWhite shadow-inner">
                         </div>
-                        <button onclick="performUserSearch()" class="py-3 px-6 rounded-2xl bg-pastel-pinkDeep hover:bg-pink-600 text-white font-semibold text-sm transition-all shadow-sm flex items-center justify-center space-x-2">
+                        <button onclick="performUserSearch()" class="py-3.5 px-7 rounded-2xl bg-pastel-pinkDeep hover:bg-pink-600 text-white font-bold text-sm transition-all shadow-cute-btn flex items-center justify-center space-x-2 cursor-pointer">
                             <i class="fa-solid fa-search"></i>
-                            <span>ค้นหา</span>
+                            <span>ค้นหาข้อมูล</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- Notifications Panel for User -->
-                <div id="user-notifications-box" class="hidden bg-gradient-to-r from-pink-50 to-purple-50 p-4 rounded-2xl border border-pastel-pink shadow-sm">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-pastel-pinkDeep text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
-                            <i class="fa-solid fa-bell text-xs"></i>
+                <div id="user-notifications-box" class="hidden bg-gradient-to-r from-pink-50 via-purple-50 to-pink-100 p-5 rounded-3xl border-2 border-pastel-pink shadow-md">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-2xl bg-pastel-pinkDeep text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md">
+                            <i class="fa-solid fa-bell text-sm animate-bounce"></i>
                         </div>
                         <div class="flex-1">
-                            <h4 class="text-xs font-bold text-pastel-pinkDeep uppercase tracking-wider">การแจ้งเตือนล่าสุดของคุณ</h4>
-                            <p id="user-notification-text" class="text-sm font-medium text-gray-700 mt-0.5"></p>
-                            <span id="user-notification-time" class="text-[10px] text-gray-400 mt-1 block"></span>
+                            <h4 class="text-xs sm:text-sm font-bold text-pastel-pinkDeep uppercase tracking-wider">การแจ้งเตือนล่าสุดของคุณ ✨</h4>
+                            <p id="user-notification-text" class="text-sm font-semibold text-gray-700 mt-1"></p>
+                            <span id="user-notification-time" class="text-[11px] text-gray-400 mt-1.5 block"></span>
                         </div>
                     </div>
                 </div>
@@ -254,9 +259,11 @@
                 <!-- Search Result Container -->
                 <div id="user-search-result" class="space-y-4">
                     <!-- Default State: Show all user's submissions or helper prompt -->
-                    <div class="text-center py-10 bg-white/50 rounded-3xl border border-dashed border-pastel-pink">
-                        <i class="fa-solid fa-id-card text-4xl text-pastel-pinkDark/60 mb-2"></i>
-                        <p class="text-sm text-gray-500">กรอกชื่อยูสเซอร์ด้านบนเพื่อค้นหาข้อมูล หรือดูรายการทั้งหมดล่างนี้</p>
+                    <div class="text-center py-12 bg-white/70 rounded-[2.5rem] border-2 border-dashed border-pastel-pink shadow-xs">
+                        <div class="w-16 h-16 bg-pastel-pinkLight rounded-3xl flex items-center justify-center mx-auto text-pastel-pinkDeep text-2xl mb-3 border border-pastel-pink">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <p class="text-sm font-bold text-gray-600">กรอกชื่อยูสเซอร์ด้านบนเพื่อค้นหาข้อมูล หรือดูรายการทั้งหมดล่างนี้</p>
                     </div>
                 </div>
             </div>
@@ -266,62 +273,62 @@
         <section id="section-admin" class="hidden animate-fade-in space-y-6">
             
             <!-- Admin Top Notification Alert Banner -->
-            <div id="admin-alert-banner" class="hidden bg-gradient-to-r from-amber-100 via-pink-100 to-rose-100 border border-amber-300 p-4 rounded-2xl shadow-sm flex items-center justify-between animate-bounce">
+            <div id="admin-alert-banner" class="hidden bg-gradient-to-r from-amber-100 via-pink-100 to-rose-100 border-2 border-amber-300 p-4.5 rounded-3xl shadow-md flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <span class="w-3 h-3 bg-red-500 rounded-full badge-pulse"></span>
+                    <span class="w-3.5 h-3.5 bg-red-500 rounded-full badge-pulse"></span>
                     <div>
-                        <h4 class="text-xs font-bold text-amber-900">มีรายการคำขอยืนยันใหม่เข้ามา!</h4>
-                        <p id="admin-alert-text" class="text-xs text-amber-800"></p>
+                        <h4 class="text-xs sm:text-sm font-bold text-amber-900">มีรายการคำขอยืนยันใหม่เข้ามาแล้วจ้า! 🔔</h4>
+                        <p id="admin-alert-text" class="text-xs text-amber-800 mt-0.5"></p>
                     </div>
                 </div>
-                <button onclick="hideAdminAlert()" class="text-amber-800 text-xs px-2 py-1 hover:bg-amber-200/50 rounded-lg">ปิด</button>
+                <button onclick="hideAdminAlert()" class="text-amber-900 font-bold text-xs px-3 py-1.5 bg-white/80 hover:bg-amber-200 rounded-xl shadow-xs">ปิด</button>
             </div>
 
             <!-- Admin Summary Stat Cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-pastel-pink shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-5 rounded-3xl border-2 border-pastel-pink shadow-sm hover:shadow-md transition-all">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-gray-500 font-medium">คำขอทั้งหมด</p>
-                            <h3 id="stat-total" class="text-2xl font-bold text-gray-800 mt-1">0</h3>
+                            <p class="text-xs text-gray-500 font-bold">คำขอทั้งหมด</p>
+                            <h3 id="stat-total" class="text-3xl font-extrabold text-gray-800 mt-1">0</h3>
                         </div>
-                        <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-sm">
+                        <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg shadow-2xs">
                             <i class="fa-solid fa-folder-open"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-amber-200 shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-5 rounded-3xl border-2 border-amber-200 shadow-sm hover:shadow-md transition-all">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-amber-600 font-medium">รอการตรวจสอบ</p>
-                            <h3 id="stat-pending" class="text-2xl font-bold text-amber-600 mt-1">0</h3>
+                            <p class="text-xs text-amber-600 font-bold">รอการตรวจสอบ</p>
+                            <h3 id="stat-pending" class="text-3xl font-extrabold text-amber-600 mt-1">0</h3>
                         </div>
-                        <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-sm">
+                        <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg shadow-2xs">
                             <i class="fa-solid fa-clock"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-emerald-200 shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-5 rounded-3xl border-2 border-emerald-200 shadow-sm hover:shadow-md transition-all">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-emerald-600 font-medium">ผ่านการยืนยัน</p>
-                            <h3 id="stat-approved" class="text-2xl font-bold text-emerald-600 mt-1">0</h3>
+                            <p class="text-xs text-emerald-600 font-bold">ผ่านการยืนยัน</p>
+                            <h3 id="stat-approved" class="text-3xl font-extrabold text-emerald-600 mt-1">0</h3>
                         </div>
-                        <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm">
+                        <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg shadow-2xs">
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-rose-200 shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-5 rounded-3xl border-2 border-rose-200 shadow-sm hover:shadow-md transition-all">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-rose-600 font-medium">ไม่ผ่านการยืนยัน</p>
-                            <h3 id="stat-rejected" class="text-2xl font-bold text-rose-600 mt-1">0</h3>
+                            <p class="text-xs text-rose-600 font-bold">ไม่ผ่านการยืนยัน</p>
+                            <h3 id="stat-rejected" class="text-3xl font-extrabold text-rose-600 mt-1">0</h3>
                         </div>
-                        <div class="w-9 h-9 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-sm">
+                        <div class="w-11 h-11 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg shadow-2xs">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </div>
                     </div>
@@ -329,50 +336,50 @@
             </div>
 
             <!-- Admin Filters and Table Control -->
-            <div class="bg-white p-6 rounded-3xl border border-pastel-pink shadow-soft-pink space-y-4">
+            <div class="bg-white p-6 sm:p-8 rounded-[2.5rem] border-2 border-pastel-pink shadow-soft-pink space-y-5">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-                            <i class="fa-solid fa-list-check text-pastel-pinkDeep"></i>
-                            รายการจัดการขอยืนยันยูสเซอร์ตัวแทน
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-pastel-pinkDeep text-lg"></i>
+                            รายการจัดการขอยืนยันยูสเซอร์ตัวแทน 🎀
                         </h2>
-                        <p class="text-xs text-gray-500">ตรวจสอบ แก้ไขข้อมูล อัปเดตสถานะการยืนยัน และสถานะการปรับยศ</p>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-0.5">ตรวจสอบ แก้ไขข้อมูล อัปเดตสถานะการยืนยัน และสถานะการปรับยศแบบเรียลไทม์</p>
                     </div>
 
                     <!-- Filter Controls -->
-                    <div class="flex flex-wrap gap-2">
-                        <select id="admin-filter-status" onchange="renderAdminTable()" class="px-3 py-2 rounded-xl border border-pastel-pink text-xs bg-pastel-softWhite outline-none">
+                    <div class="flex flex-wrap gap-2.5">
+                        <select id="admin-filter-status" onchange="renderAdminTable()" class="px-3.5 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-semibold bg-pastel-softWhite outline-none shadow-xs">
                             <option value="ALL">สถานะการยืนยัน: ทั้งหมด</option>
                             <option value="รอการตรวจสอบ">รอการตรวจสอบ</option>
                             <option value="ผ่านการยืนยัน">ผ่านการยืนยัน</option>
                             <option value="ไม่ผ่านการยืนยัน">ไม่ผ่านการยืนยัน</option>
                         </select>
 
-                        <select id="admin-filter-rank" onchange="renderAdminTable()" class="px-3 py-2 rounded-xl border border-pastel-pink text-xs bg-pastel-softWhite outline-none">
+                        <select id="admin-filter-rank" onchange="renderAdminTable()" class="px-3.5 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-semibold bg-pastel-softWhite outline-none shadow-xs">
                             <option value="ALL">สถานะปรับยศ: ทั้งหมด</option>
                             <option value="รอดำเนินการปรับยศ">รอดำเนินการปรับยศ</option>
                             <option value="ปรับยศเรียบร้อยแล้ว">ปรับยศเรียบร้อยแล้ว</option>
                         </select>
 
-                        <input type="text" id="admin-search-input" onkeyup="renderAdminTable()" placeholder="ค้นหาชื่อยูสเซอร์/การติดต่อ..." class="px-3 py-2 rounded-xl border border-pastel-pink text-xs bg-pastel-softWhite outline-none w-44">
+                        <input type="text" id="admin-search-input" onkeyup="renderAdminTable()" placeholder="ค้นหายูสเซอร์/การติดต่อ..." class="px-4 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-semibold bg-pastel-softWhite outline-none w-48 shadow-inner">
                     </div>
                 </div>
 
                 <!-- Requests Table Responsive Container -->
-                <div class="overflow-x-auto rounded-2xl border border-pastel-pink/60 custom-scrollbar">
+                <div class="overflow-x-auto rounded-3xl border-2 border-pastel-pink/70 custom-scrollbar shadow-xs">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-pastel-pinkLight/60 text-gray-700 text-xs font-semibold uppercase border-b border-pastel-pink">
-                                <th class="p-3.5">วันที่-เวลา</th>
-                                <th class="p-3.5">ยูสเซอร์</th>
-                                <th class="p-3.5">ช่องทางติดต่อ</th>
-                                <th class="p-3.5 text-center">รูปหน้าร้าน</th>
-                                <th class="p-3.5">สถานะการยืนยัน</th>
-                                <th class="p-3.5">สถานะการปรับยศ</th>
-                                <th class="p-3.5 text-center">จัดการ</th>
+                            <tr class="bg-pastel-pinkLight text-gray-700 text-xs font-bold uppercase border-b-2 border-pastel-pink">
+                                <th class="p-4">วันที่-เวลา</th>
+                                <th class="p-4">ยูสเซอร์</th>
+                                <th class="p-4">ช่องทางติดต่อ</th>
+                                <th class="p-4 text-center">รูปหน้าร้าน</th>
+                                <th class="p-4">สถานะการยืนยัน</th>
+                                <th class="p-4">สถานะการปรับยศ</th>
+                                <th class="p-4 text-center">จัดการ</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-table-body" class="divide-y divide-pastel-pink/30 text-xs sm:text-sm">
+                        <tbody id="admin-table-body" class="divide-y-2 divide-pastel-pink/30 text-xs sm:text-sm font-medium">
                             <!-- Dynamic Content Rendered Here -->
                         </tbody>
                     </table>
@@ -383,83 +390,83 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto py-6 text-center text-xs text-gray-500 border-t border-pastel-pink/40 bg-white/40">
-        <p>© 2026 Agent Verification System. All rights reserved.</p>
-        <p class="mt-1 text-[11px] text-pastel-pinkDeep">ระบบจัดการข้อมูลและติดตามการยืนยันตัวตนตัวแทนสำหรับกดแอปพรีเมียม</p>
+    <footer class="mt-auto py-8 text-center text-xs text-gray-500 border-t-2 border-pastel-pink/50 bg-white/60">
+        <p class="font-bold">© 2026 Agent Verification System. All rights reserved. 🌸</p>
+        <p class="mt-1.5 text-xs text-pastel-pinkDeep font-semibold">ระบบจัดการข้อมูลและติดตามการยืนยันตัวตนตัวแทนสำหรับกดแอปพรีเมียม (ดีไซน์สุดคิ้วท์)</p>
     </footer>
 
     <!-- MODAL 1: Admin Login Modal -->
-    <div id="modal-admin-login" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-sm rounded-3xl p-6 border border-pastel-pink shadow-2xl relative animate-scale-up">
-            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <i class="fa-solid fa-xmark text-lg"></i>
+    <div id="modal-admin-login" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-[2.5rem] p-7 border-2 border-pastel-pink shadow-2xl relative animate-scale-up">
+            <button onclick="closeAdminModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-pastel-pinkLight flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-pastel-pinkLight text-pastel-pinkDeep mx-auto flex items-center justify-center text-xl mb-2 border border-pastel-pink">
+                <div class="w-14 h-14 rounded-2xl bg-pastel-pinkLight text-pastel-pinkDeep mx-auto flex items-center justify-center text-2xl mb-3 border-2 border-pastel-pink shadow-xs">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3 class="text-lg font-bold text-gray-800">เข้าสู่ระบบแอดมิน</h3>
-                <p class="text-xs text-gray-500">กรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการฝั่งแอดมิน</p>
+                <h3 class="text-xl font-bold text-gray-800">เข้าสู่ระบบแอดมิน 🔐</h3>
+                <p class="text-xs text-gray-500 mt-1">กรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการฝั่งแอดมินจ้า</p>
             </div>
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">รหัสผ่านแอดมิน</label>
-                    <input type="password" id="admin-password" placeholder="ใส่รหัสผ่าน ( Demo: admin123 )" required class="w-full px-4 py-2.5 rounded-xl border border-pastel-pink focus:border-pastel-pinkDeep outline-none text-sm">
+                    <label class="block text-xs font-bold text-gray-700 mb-1.5">รหัสผ่านแอดมิน</label>
+                    <input type="password" id="admin-password" placeholder="ใส่รหัสผ่าน ( Demo: admin123 )" required class="w-full px-4 py-3 rounded-2xl border-2 border-pastel-pink focus:border-pastel-pinkDeep outline-none text-sm shadow-inner bg-pastel-softWhite">
                 </div>
-                <button type="submit" class="w-full py-3 rounded-xl bg-pastel-pinkDeep hover:bg-pink-600 text-white font-semibold text-sm transition-all shadow-md">
-                    เข้าสู่ระบบ
+                <button type="submit" class="w-full py-3.5 rounded-2xl bg-pastel-pinkDeep hover:bg-pink-600 text-white font-bold text-sm transition-all shadow-cute-btn">
+                    เข้าสู่ระบบ 🚀
                 </button>
             </form>
         </div>
     </div>
 
     <!-- MODAL 2: Admin Edit Request Modal -->
-    <div id="modal-admin-edit" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-pastel-pink shadow-2xl relative my-8">
-            <button onclick="closeEditModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <i class="fa-solid fa-xmark text-lg"></i>
+    <div id="modal-admin-edit" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-6 sm:p-8 border-2 border-pastel-pink shadow-2xl relative my-8">
+            <button onclick="closeEditModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 w-8 h-8 rounded-full bg-pastel-pinkLight flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
             </button>
             
-            <h3 class="text-lg font-bold text-gray-800 mb-1 flex items-center gap-2">
+            <h3 class="text-xl font-bold text-gray-800 mb-1 flex items-center gap-2">
                 <i class="fa-solid fa-pen-to-square text-pastel-pinkDeep"></i>
-                แก้ไขและอัปเดตสถานะคำขอ
+                แก้ไขและอัปเดตสถานะคำขอ 📝
             </h3>
-            <p class="text-xs text-gray-500 mb-6">รหัสคำขอ: <span id="edit-modal-id" class="font-mono font-bold text-pastel-pinkDeep"></span></p>
+            <p class="text-xs text-gray-500 mb-6 font-semibold">รหัสคำขอ: <span id="edit-modal-id" class="font-mono font-bold text-pastel-pinkDeep"></span></p>
 
             <form onsubmit="saveRequestChanges(event)" class="space-y-4">
                 <input type="hidden" id="edit-item-id">
 
                 <!-- Editable Username & Contact -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">ชื่อยูสเซอร์</label>
-                        <input type="text" id="edit-username" required class="w-full px-3 py-2 rounded-xl border border-pastel-pink text-xs focus:border-pastel-pinkDeep outline-none">
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5">ชื่อยูสเซอร์</label>
+                        <input type="text" id="edit-username" required class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-semibold focus:border-pastel-pinkDeep outline-none bg-pastel-softWhite">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">ช่องทางติดต่อ</label>
-                        <input type="text" id="edit-contact" required class="w-full px-3 py-2 rounded-xl border border-pastel-pink text-xs focus:border-pastel-pinkDeep outline-none">
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5">ช่องทางติดต่อ</label>
+                        <input type="text" id="edit-contact" required class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-semibold focus:border-pastel-pinkDeep outline-none bg-pastel-softWhite">
                     </div>
                 </div>
 
                 <!-- Image Preview & Change -->
                 <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">รูปภาพหน้าร้าน</label>
-                    <div class="flex items-center space-x-3 bg-pastel-pinkLight/40 p-2.5 rounded-xl border border-pastel-pink">
-                        <img id="edit-image-preview" src="" class="w-16 h-16 object-cover rounded-lg border border-pastel-pink">
+                    <label class="block text-xs font-bold text-gray-700 mb-1.5">รูปภาพหน้าร้าน</label>
+                    <div class="flex items-center space-x-4 bg-pastel-pinkLight/50 p-3 rounded-2xl border-2 border-pastel-pink">
+                        <img id="edit-image-preview" src="" class="w-16 h-16 object-cover rounded-xl border-2 border-pastel-pink shadow-xs">
                         <div class="flex-1">
-                            <input type="file" id="edit-image-file" accept="image/*" onchange="handleEditImageSelect(event)" class="text-xs text-gray-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:bg-pastel-pinkDeep file:text-white hover:file:bg-pink-600">
-                            <p class="text-[10px] text-gray-400 mt-1">อัปโหลดใหม่หากต้องการเปลี่ยนรูป</p>
+                            <input type="file" id="edit-image-file" accept="image/*" onchange="handleEditImageSelect(event)" class="text-xs text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-pastel-pinkDeep file:text-white hover:file:bg-pink-600">
+                            <p class="text-[10px] text-gray-400 mt-1">อัปโหลดใหม่หากต้องการเปลี่ยนรูปจ้า</p>
                         </div>
                     </div>
                 </div>
 
-                <hr class="border-pastel-pink/50 my-2">
+                <hr class="border-pastel-pink/60 my-3">
 
                 <!-- Status Selectors -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">สถานะการยืนยัน</label>
-                        <select id="edit-verify-status" onchange="toggleRejectReasonField()" class="w-full px-3 py-2 rounded-xl border border-pastel-pink text-xs font-medium focus:border-pastel-pinkDeep outline-none bg-white">
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5">สถานะการยืนยัน</label>
+                        <select id="edit-verify-status" onchange="toggleRejectReasonField()" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-bold focus:border-pastel-pinkDeep outline-none bg-white">
                             <option value="รอการตรวจสอบ">รอการตรวจสอบ</option>
                             <option value="ผ่านการยืนยัน">ผ่านการยืนยัน</option>
                             <option value="ไม่ผ่านการยืนยัน">ไม่ผ่านการยืนยัน</option>
@@ -467,8 +474,8 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">สถานะการปรับยศ</label>
-                        <select id="edit-rank-status" class="w-full px-3 py-2 rounded-xl border border-pastel-pink text-xs font-medium focus:border-pastel-pinkDeep outline-none bg-white">
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5">สถานะการปรับยศ</label>
+                        <select id="edit-rank-status" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pastel-pink text-xs font-bold focus:border-pastel-pinkDeep outline-none bg-white">
                             <option value="รอดำเนินการปรับยศ">รอดำเนินการปรับยศ</option>
                             <option value="ปรับยศเรียบร้อยแล้ว">ปรับยศเรียบร้อยแล้ว</option>
                         </select>
@@ -477,14 +484,14 @@
 
                 <!-- Reject Reason (Visible if 'ไม่ผ่านการยืนยัน') -->
                 <div id="reject-reason-container" class="hidden">
-                    <label class="block text-xs font-semibold text-rose-600 mb-1">เหตุผลที่ไม่ผ่านการยืนยัน <span class="text-red-500">*</span></label>
-                    <textarea id="edit-reject-reason" rows="2" placeholder="ระบุเหตุผล เช่น รูปภาพหน้าร้านไม่ชัดเจน หรือไม่พบชื่อยูสเซอร์ในระบบ" class="w-full p-3 rounded-xl border border-rose-300 text-xs focus:border-rose-500 outline-none bg-rose-50/30"></textarea>
+                    <label class="block text-xs font-bold text-rose-600 mb-1.5">เหตุผลที่ไม่ผ่านการยืนยัน <span class="text-red-500">*</span></label>
+                    <textarea id="edit-reject-reason" rows="2" placeholder="ระบุเหตุผล เช่น รูปภาพหน้าร้านไม่ชัดเจน หรือไม่พบชื่อยูสเซอร์ในระบบ" class="w-full p-3 rounded-2xl border-2 border-rose-300 text-xs focus:border-rose-500 outline-none bg-rose-50/40"></textarea>
                 </div>
 
                 <!-- Buttons -->
-                <div class="flex justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-xs font-medium text-gray-600 hover:bg-gray-100">ยกเลิก</button>
-                    <button type="submit" class="px-5 py-2 rounded-xl bg-pastel-pinkDeep hover:bg-pink-600 text-white text-xs font-semibold shadow-md">บันทึกข้อมูล</button>
+                <div class="flex justify-end space-x-2 pt-3">
+                    <button type="button" onclick="closeEditModal()" class="px-5 py-2.5 rounded-2xl border-2 border-gray-300 text-xs font-bold text-gray-600 hover:bg-gray-100">ยกเลิก</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-2xl bg-pastel-pinkDeep hover:bg-pink-600 text-white text-xs font-bold shadow-cute-btn">บันทึกข้อมูล ✨</button>
                 </div>
             </form>
         </div>
@@ -493,19 +500,19 @@
     <!-- MODAL 3: Image Viewer Modal -->
     <div id="modal-image-viewer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="closeImageViewer()">
         <div class="relative max-w-3xl w-full text-center" onclick="event.stopPropagation()">
-            <button onclick="closeImageViewer()" class="absolute -top-10 right-0 text-white text-2xl hover:text-pastel-pink">
-                <i class="fa-solid fa-xmark"></i>
+            <button onclick="closeImageViewer()" class="absolute -top-12 right-0 text-white text-3xl hover:text-pastel-pink">
+                <i class="fa-solid fa-circle-xmark"></i>
             </button>
-            <img id="modal-view-image" src="" class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl border-2 border-white object-contain">
-            <p id="modal-view-caption" class="text-white text-sm mt-3 font-medium"></p>
+            <img id="modal-view-image" src="" class="max-h-[80vh] mx-auto rounded-3xl shadow-2xl border-4 border-white object-contain">
+            <p id="modal-view-caption" class="text-white text-sm mt-3 font-bold"></p>
         </div>
     </div>
 
     <!-- Toast Notification Overlay -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-3 border border-pastel-pink/30">
-            <div id="toast-icon" class="text-pastel-pinkDark text-lg"></div>
-            <div id="toast-message" class="text-xs sm:text-sm font-medium"></div>
+        <div class="bg-gray-900 text-white px-6 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 border-2 border-pastel-pink/50">
+            <div id="toast-icon" class="text-pastel-pinkDark text-xl"></div>
+            <div id="toast-message" class="text-xs sm:text-sm font-bold"></div>
         </div>
     </div>
 
@@ -614,15 +621,15 @@
             secAdmin.classList.add('hidden');
 
             // Reset Tab styling
-            navUser.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2 text-gray-600 hover:text-pastel-pinkDeep";
-            navStatus.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2 text-gray-600 hover:text-pastel-pinkDeep";
+            navUser.className = "px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-gray-600 hover:text-pastel-pinkDeep hover:bg-pink-50";
+            navStatus.className = "px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-gray-600 hover:text-pastel-pinkDeep hover:bg-pink-50";
 
             if (tabName === 'user-submit') {
                 secSubmit.classList.remove('hidden');
-                navUser.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2 bg-pastel-pinkDeep text-white shadow-sm";
+                navUser.className = "px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center space-x-2 bg-pastel-pinkDeep text-white shadow-cute-btn";
             } else if (tabName === 'user-status') {
                 secStatus.classList.remove('hidden');
-                navStatus.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center space-x-2 bg-pastel-pinkDeep text-white shadow-sm";
+                navStatus.className = "px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center space-x-2 bg-pastel-pinkDeep text-white shadow-cute-btn";
                 performUserSearch(); // Auto Load Status
             } else if (tabName === 'admin') {
                 if (!isAdminLoggedIn) {
@@ -775,9 +782,9 @@
 
             if (filtered.length === 0) {
                 container.innerHTML = `
-                    <div class="bg-white rounded-3xl p-8 text-center border border-pastel-pink shadow-sm">
+                    <div class="bg-white rounded-[2.5rem] p-8 text-center border-2 border-pastel-pink shadow-sm">
                         <i class="fa-solid fa-folder-open text-4xl text-gray-300 mb-2"></i>
-                        <p class="text-sm font-semibold text-gray-600">ไม่พบข้อมูลยูสเซอร์ "${query}"</p>
+                        <p class="text-sm font-bold text-gray-600">ไม่พบข้อมูลยูสเซอร์ "${query}"</p>
                         <p class="text-xs text-gray-400 mt-1">โปรดตรวจสอบการสะกดชื่อยูสเซอร์ หรือส่งข้อมูลลงทะเบียนใหม่</p>
                     </div>
                 `;
@@ -801,67 +808,67 @@
             // Render Cards
             filtered.forEach(req => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-3xl p-5 border border-pastel-pink shadow-soft-pink space-y-4 hover:shadow-card-hover transition-all";
+                card.className = "bg-white rounded-[2.5rem] p-6 border-2 border-pastel-pink shadow-soft-pink space-y-4 hover:shadow-card-hover transition-all";
 
                 // Badge colors
                 let verifyBadge = "";
                 if (req.verifyStatus === 'รอการตรวจสอบ') {
-                    verifyBadge = `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 border border-amber-200"><i class="fa-solid fa-spinner fa-spin mr-1"></i> รอการตรวจสอบ</span>`;
+                    verifyBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200"><i class="fa-solid fa-spinner fa-spin mr-1"></i> รอการตรวจสอบ</span>`;
                 } else if (req.verifyStatus === 'ผ่านการยืนยัน') {
-                    verifyBadge = `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-circle-check mr-1"></i> ผ่านการยืนยัน</span>`;
+                    verifyBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-circle-check mr-1"></i> ผ่านการยืนยัน</span>`;
                 } else {
-                    verifyBadge = `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-700 border border-rose-200"><i class="fa-solid fa-circle-xmark mr-1"></i> ไม่ผ่านการยืนยัน</span>`;
+                    verifyBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700 border border-rose-200"><i class="fa-solid fa-circle-xmark mr-1"></i> ไม่ผ่านการยืนยัน</span>`;
                 }
 
                 let rankBadge = "";
                 if (req.rankStatus === 'ปรับยศเรียบร้อยแล้ว') {
-                    rankBadge = `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-pastel-pinkDark to-pastel-pinkDeep text-white shadow-sm"><i class="fa-solid fa-crown mr-1"></i> ปรับยศเรียบร้อยแล้ว</span>`;
+                    rankBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-pastel-pinkDark to-pastel-pinkDeep text-white shadow-xs"><i class="fa-solid fa-crown mr-1"></i> ปรับยศเรียบร้อยแล้ว</span>`;
                 } else {
-                    rankBadge = `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200"><i class="fa-solid fa-hourglass-half mr-1"></i> รอดำเนินการปรับยศ</span>`;
+                    rankBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-600 border border-gray-200"><i class="fa-solid fa-hourglass-half mr-1"></i> รอดำเนินการปรับยศ</span>`;
                 }
 
                 card.innerHTML = `
-                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pastel-pink/40 pb-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-pastel-pink/40 pb-3">
                         <div>
-                            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">รหัสคำขอ: ${req.id}</span>
-                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-1.5">
+                            <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">รหัสคำขอ: ${req.id}</span>
+                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-1.5 mt-0.5">
                                 <i class="fa-solid fa-user-check text-pastel-pinkDeep"></i>
                                 ${req.username}
                             </h3>
                         </div>
                         <div class="text-right">
-                            <span class="text-[11px] text-gray-400 block"><i class="fa-regular fa-clock mr-1"></i>${req.timestamp}</span>
+                            <span class="text-[11px] text-gray-400 font-semibold block"><i class="fa-regular fa-clock mr-1"></i>${req.timestamp}</span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                        <div class="space-y-1.5 md:col-span-2">
-                            <p class="text-xs text-gray-600">
-                                <span class="font-semibold text-gray-700">ช่องทางการติดต่อ:</span> ${req.contact}
+                        <div class="space-y-2 md:col-span-2">
+                            <p class="text-xs sm:text-sm text-gray-600">
+                                <span class="font-bold text-gray-700">ช่องทางการติดต่อ:</span> ${req.contact}
                             </p>
                             
                             <div class="flex flex-wrap items-center gap-2 pt-1">
                                 <div class="text-xs">
-                                    <span class="text-gray-500 mr-1">การยืนยัน:</span>
+                                    <span class="text-gray-500 font-semibold mr-1">การยืนยัน:</span>
                                     ${verifyBadge}
                                 </div>
                                 <div class="text-xs">
-                                    <span class="text-gray-500 mr-1">การปรับยศ:</span>
+                                    <span class="text-gray-500 font-semibold mr-1">การปรับยศ:</span>
                                     ${rankBadge}
                                 </div>
                             </div>
 
                             ${req.verifyStatus === 'ไม่ผ่านการยืนยัน' ? `
-                                <div class="mt-3 p-3 rounded-2xl bg-rose-50 border border-rose-200 text-xs text-rose-700">
-                                    <span class="font-bold block"><i class="fa-solid fa-triangle-exclamation mr-1"></i> เหตุผลที่ไม่ผ่าน:</span>
+                                <div class="mt-3 p-3.5 rounded-2xl bg-rose-50 border-2 border-rose-200 text-xs text-rose-700 font-semibold">
+                                    <span class="font-bold block mb-0.5"><i class="fa-solid fa-triangle-exclamation mr-1"></i> เหตุผลที่ไม่ผ่าน:</span>
                                     ${req.rejectReason || 'ข้อมูลไม่ถูกต้อง กรุณาติดต่อแอดมินเพื่อแก้ไข'}
                                 </div>
                             ` : ''}
                         </div>
 
                         <div class="text-center md:text-right">
-                            <img src="${req.image}" onclick="viewImage('${req.image}', 'รูปหน้าร้านของ: ${req.username}')" class="w-full h-24 object-cover rounded-2xl border border-pastel-pink shadow-sm hover:opacity-90 transition-opacity cursor-pointer inline-block" alt="รูปหน้าร้าน">
-                            <span class="text-[10px] text-gray-400 block mt-1">(คลิกเพื่อดูรูปใหญ่)</span>
+                            <img src="${req.image}" onclick="viewImage('${req.image}', 'รูปหน้าร้านของ: ${req.username}')" class="w-full h-28 object-cover rounded-2xl border-2 border-pastel-pink shadow-xs hover:opacity-95 transition-opacity cursor-pointer inline-block" alt="รูปหน้าร้าน">
+                            <span class="text-[10px] text-gray-400 font-semibold block mt-1.5">(คลิกเพื่อดูรูปใหญ่)</span>
                         </div>
                     </div>
                 `;
@@ -917,7 +924,7 @@
             if (list.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="text-center py-8 text-gray-400 text-xs">
+                        <td colspan="7" class="text-center py-10 text-gray-400 text-xs font-bold">
                             ไม่พบข้อมูลรายการคำขอตามเงื่อนไขที่เลือก
                         </td>
                     </tr>
@@ -927,7 +934,7 @@
 
             list.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-pastel-pinkLight/30 transition-colors";
+                tr.className = "hover:bg-pastel-pinkLight/40 transition-colors";
 
                 let vClass = "";
                 if (item.verifyStatus === 'รอการตรวจสอบ') vClass = "bg-amber-100 text-amber-800 border-amber-200";
@@ -939,27 +946,27 @@
                 else rClass = "bg-gray-100 text-gray-600 border-gray-200";
 
                 tr.innerHTML = `
-                    <td class="p-3 text-gray-500 text-xs whitespace-nowrap">${item.timestamp}</td>
-                    <td class="p-3 font-semibold text-gray-800">${item.username}</td>
-                    <td class="p-3 text-xs text-gray-600">${item.contact}</td>
-                    <td class="p-3 text-center">
-                        <img src="${item.image}" onclick="viewImage('${item.image}', 'รูปหน้าร้าน: ${item.username}')" class="w-10 h-10 object-cover rounded-xl border border-pastel-pink mx-auto cursor-pointer hover:scale-105 transition-transform" alt="รูปหน้าร้าน">
+                    <td class="p-3.5 text-gray-500 text-xs whitespace-nowrap font-semibold">${item.timestamp}</td>
+                    <td class="p-3.5 font-bold text-gray-800">${item.username}</td>
+                    <td class="p-3.5 text-xs text-gray-600 font-semibold">${item.contact}</td>
+                    <td class="p-3.5 text-center">
+                        <img src="${item.image}" onclick="viewImage('${item.image}', 'รูปหน้าร้าน: ${item.username}')" class="w-11 h-11 object-cover rounded-2xl border-2 border-pastel-pink mx-auto cursor-pointer hover:scale-110 transition-transform shadow-2xs" alt="รูปหน้าร้าน">
                     </td>
-                    <td class="p-3">
-                        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold border ${vClass}">
+                    <td class="p-3.5">
+                        <span class="px-3 py-1 rounded-full text-[11px] font-bold border ${vClass} shadow-2xs">
                             ${item.verifyStatus}
                         </span>
                     </td>
-                    <td class="p-3">
-                        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold border ${rClass}">
+                    <td class="p-3.5">
+                        <span class="px-3 py-1 rounded-full text-[11px] font-bold border ${rClass} shadow-2xs">
                             ${item.rankStatus}
                         </span>
                     </td>
-                    <td class="p-3 text-center space-x-1 whitespace-nowrap">
-                        <button onclick="openEditModal('${item.id}')" class="px-3 py-1.5 bg-pastel-pinkDeep hover:bg-pink-600 text-white rounded-xl text-xs shadow-xs font-medium transition-all">
+                    <td class="p-3.5 text-center space-x-1.5 whitespace-nowrap">
+                        <button onclick="openEditModal('${item.id}')" class="px-3 py-1.5 bg-pastel-pinkDeep hover:bg-pink-600 text-white rounded-xl text-xs shadow-xs font-bold transition-all">
                             <i class="fa-solid fa-pen-to-square mr-1"></i> จัดการ/แก้ไข
                         </button>
-                        <button onclick="deleteRequest('${item.id}')" class="px-2.5 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-600 rounded-xl text-xs transition-all">
+                        <button onclick="deleteRequest('${item.id}')" class="px-2.5 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-600 rounded-xl text-xs font-bold transition-all">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
