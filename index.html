@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบยืนยันยูสเซอร์ตัวแทน - Pinkjulieland</title>
+    <title>ระบบยืนยันยูสเซอร์ตัวแทน & ระบบจัดการสิทธิ์ - Pinkjulieland</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #ffe6f0;
+            --bg-main: #fff0f5;
             --paper: #ffffff;
-            --text-dark: #8a516b;
-            --text-light: #bd859b;
-            --accent-pink: #eb7aa6;
-            --accent-pink-hover: #d96291;
-            --accent-yellow: #fcf2b6;
-            --mint: #a2dcd4;
-            --peach: #ffc2b3;
-            --sky: #b8e9ed;
-            --line-color: rgba(235, 122, 166, 0.2);
+            --text-dark: #6e4b5e;
+            --text-light: #ab8698;
+            --accent-pink: #f49ac2;
+            --accent-pink-hover: #e885b2;
+            --soft-pink-bg: #fff5f8;
+            --accent-yellow: #fff3c4;
+            --mint: #b2e2d8;
+            --peach: #ffd4c4;
+            --sky: #c7ebf0;
+            --lavender: #e4d7f5;
+            --line-color: rgba(244, 154, 194, 0.15);
         }
         body {
             background-color: var(--bg-main);
-            background-image: repeating-linear-gradient(to right, #ffe6f0, #ffe6f0 40px, #ffdbee 40px, #ffdbee 80px);
+            background-image: repeating-linear-gradient(to right, #fff0f5, #fff0f5 40px, #fde8f0 40px, #fde8f0 80px);
             font-family: 'Mitr', sans-serif;
             color: var(--text-dark);
             min-height: 100vh;
@@ -33,20 +35,21 @@
         .paper-card {
             background-color: var(--paper);
             position: relative;
-            box-shadow: 0 10px 25px rgba(235, 122, 166, 0.15);
+            box-shadow: 0 10px 30px rgba(232, 175, 201, 0.18);
             border-radius: 24px;
-            border: 2px solid #ffcee0;
+            border: 2px solid #ffdeeb;
         }
         .tape {
             position: absolute;
             mix-blend-mode: multiply;
-            opacity: 0.85;
+            opacity: 0.75;
             z-index: 10;
-            height: 24px;
-            width: 90px;
+            height: 22px;
+            width: 85px;
         }
-        .tape-pink { background-color: #ffb6c1; }
-        .tape-yellow { background-color: #fdf096; }
+        .tape-pink { background-color: #ffd1dc; }
+        .tape-yellow { background-color: #fff5ba; }
+        .tape-lavender { background-color: #e8dff5; }
         .tape-1 { clip-path: polygon(2% 0%, 98% 2%, 100% 98%, 0% 96%); top: -10px; left: 20px; transform: rotate(-3deg); }
         .tape-2 { clip-path: polygon(0% 2%, 96% 0%, 98% 100%, 2% 98%); top: -10px; right: 20px; transform: rotate(4deg); }
 
@@ -54,12 +57,12 @@
             background-color: var(--accent-pink);
             color: white;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(235, 122, 166, 0.3);
+            box-shadow: 0 4px 12px rgba(244, 154, 194, 0.35);
         }
         .btn-pink:hover {
             background-color: var(--accent-pink-hover);
             transform: translateY(-2deg);
-            box-shadow: 0 6px 16px rgba(235, 122, 166, 0.4);
+            box-shadow: 0 6px 16px rgba(244, 154, 194, 0.45);
         }
         .btn-pink:active { transform: translateY(0); }
         
@@ -68,25 +71,37 @@
             align-items: center;
             padding: 4px 12px;
             border-radius: 9999px;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 500;
         }
-        .badge-pending { background-color: #fef3c7; color: #d97706; border: 1px solid #fde68a; }
-        .badge-approved { background-color: #d1fae5; color: #059669; border: 1px solid #a7f3d0; }
-        .badge-rejected { background-color: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
+        .badge-pending { background-color: #fffbeb; color: #b45309; border: 1px solid #fef3c7; }
+        .badge-approved { background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+        .badge-rejected { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
         
-        .badge-rank-pending { background-color: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; }
-        .badge-rank-done { background-color: #f3e8ff; color: #9333ea; border: 1px solid #e9d5ff; }
+        .badge-rank-pending { background-color: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; }
+        .badge-rank-done { background-color: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
 
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #ffe6f0; border-radius: 8px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #ffb6c1; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #fff0f5; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #f4c2d7; border-radius: 8px; }
 
-        @keyframes pulse-subtle {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        .soft-tab-active {
+            background-color: #ffffff;
+            color: #d85c93;
+            box-shadow: 0 2px 8px rgba(232, 175, 201, 0.25);
+            font-weight: 600;
         }
-        .pulse-btn { animation: pulse-subtle 3s infinite; }
+        .soft-tab-inactive {
+            color: #b3889c;
+        }
+        .soft-tab-inactive:hover {
+            color: #d85c93;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .level-badge-vip { background-color: #fff9db; color: #92400e; border: 1px solid #fde047; }
+        .level-badge-premium { background-color: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+        .level-badge-basic { background-color: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
     </style>
 </head>
 <body class="p-3 md:p-6 custom-scrollbar">
@@ -100,28 +115,28 @@
             <div class="tape tape-yellow tape-2"></div>
             
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-2xl bg-pink-200 flex items-center justify-center text-2xl shadow-inner">
+                <div class="w-12 h-12 rounded-2xl bg-pink-100/80 flex items-center justify-center text-2xl shadow-inner">
                     🌸
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-bold font-fredoka text-pink-600 tracking-wide">Pinkjulieland Agent Portal</h1>
-                    <p class="text-xs text-pink-400">ระบบตรวจสอบยูสเซอร์และติดตามการปรับยศตัวแทนร้านค้า</p>
+                    <h1 class="text-xl md:text-2xl font-bold font-fredoka text-pink-400 tracking-wide">Pinkjulieland Verification Portal</h1>
+                    <p class="text-xs text-pink-300">ระบบยืนยันตัวตน ตรวจสอบยศ และระบบจัดการระดับสิทธิ์ตัวแทนร้านค้า</p>
                 </div>
             </div>
 
             <!-- View Switcher & Counter -->
             <div class="flex flex-wrap items-center gap-3">
-                <div class="bg-pink-50 border border-pink-200 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium text-pink-700 shadow-sm flex items-center gap-1.5">
-                    <span>✨ คำขอทั้งหมดในระบบ:</span>
-                    <span id="total-stats-counter" class="font-bold text-pink-600 font-fredoka text-base">0</span>
+                <div class="bg-pink-50/70 border border-pink-100 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium text-pink-500 shadow-sm flex items-center gap-1.5">
+                    <span>✨ คำขอทั้งหมด:</span>
+                    <span id="total-stats-counter" class="font-bold text-pink-400 font-fredoka text-base">0</span>
                     <span>รายการ</span>
                 </div>
 
-                <div class="bg-pink-100 p-1 rounded-2xl flex border border-pink-200">
-                    <button id="nav-agent-btn" onclick="switchView('agent')" class="px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-white text-pink-600 shadow-sm">
+                <div class="bg-pink-100/50 p-1 rounded-2xl flex border border-pink-200/50">
+                    <button id="nav-agent-btn" onclick="switchView('agent')" class="px-4 py-1.5 rounded-xl text-sm transition-all duration-200 soft-tab-active">
                         👤 ฝั่งตัวแทน
                     </button>
-                    <button id="nav-admin-btn" onclick="switchView('admin')" class="px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 text-pink-400 hover:text-pink-600">
+                    <button id="nav-admin-btn" onclick="switchView('admin')" class="px-4 py-1.5 rounded-xl text-sm transition-all duration-200 soft-tab-inactive">
                         🔑 ฝั่งแอดมิน
                     </button>
                 </div>
@@ -136,45 +151,69 @@
         <!-- ========================================== -->
         <main id="view-agent" class="space-y-6">
             
-            <!-- Agent Header Card -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Agent Top Navigation Tabs (เพิ่มระบบอื่นที่เหมาะสม: ระบบตรวจสอบระดับสิทธิ์ & สิทธิประโยชน์) -->
+            <div class="flex justify-between items-center bg-white/70 backdrop-blur p-1.5 rounded-2xl border border-pink-100">
+                <div class="flex gap-2">
+                    <button id="agent-tab-verify" onclick="switchAgentSubTab('verify')" class="px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-active">
+                        📝 แบบฟอร์มยืนยันตัวแทน
+                    </button>
+                    <button id="agent-tab-benefits" onclick="switchAgentSubTab('benefits')" class="px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-inactive">
+                        👑 ตรวจสอบระดับยศ & สิทธิประโยชน์
+                    </button>
+                    <button id="agent-tab-logs" onclick="switchAgentSubTab('logs')" class="px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-inactive">
+                        🔔 ประวัติการแจ้งเตือนสิทธิ์
+                    </button>
+                </div>
+            </div>
+
+            <!-- SUB-TAB 1: Form & Status Tracking -->
+            <div id="agent-subtab-verify-content" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <!-- Left: Form Submission -->
                 <div class="md:col-span-1 paper-card p-5 md:p-6 relative">
                     <div class="tape tape-yellow tape-1"></div>
-                    <h2 class="text-lg font-bold text-pink-600 mb-1 flex items-center gap-2">
+                    <h2 class="text-lg font-bold text-pink-400 mb-1 flex items-center gap-2">
                         <span>📝</span> ยืนยันยูสเซอร์ใหม่
                     </h2>
-                    <p class="text-xs text-gray-500 mb-4">กรอกข้อมูลให้ครบถ้วนเพื่อส่งให้แอดมินตรวจสอบ</p>
+                    <p class="text-xs text-gray-400 mb-4">กรอกข้อมูลให้ครบถ้วนเพื่อส่งให้แอดมินตรวจสอบ</p>
 
                     <form id="verify-form" onsubmit="handleAgentSubmit(event)" class="space-y-4">
                         <div>
-                            <label class="block text-xs font-semibold text-pink-700 mb-1">ชื่อยูสเซอร์ตัวแทน <span class="text-red-500">*</span></label>
-                            <input type="text" id="input-username" required placeholder="เช่น agent_pinky01" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/30">
+                            <label class="block text-xs font-semibold text-pink-400 mb-1">ชื่อยูสเซอร์ตัวแทน <span class="text-rose-400">*</span></label>
+                            <input type="text" id="input-username" required placeholder="เช่น agent_pinky01" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-pink-700 mb-1">ช่องทางการติดต่อ (Line / Tel / FB) <span class="text-red-500">*</span></label>
-                            <input type="text" id="input-contact" required placeholder="เช่น Line ID: pinky_shop หรือ 081-234-5678" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/30">
+                            <label class="block text-xs font-semibold text-pink-400 mb-1">ช่องทางการติดต่อ (Line / Tel / FB) <span class="text-rose-400">*</span></label>
+                            <input type="text" id="input-contact" required placeholder="เช่น Line ID: pinky_shop หรือ 081-234-5678" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-pink-700 mb-1">อัปโหลดรูปภาพหน้าร้าน <span class="text-red-500">*</span></label>
-                            <div class="border-2 border-dashed border-pink-200 rounded-2xl p-4 text-center bg-pink-50/20 hover:bg-pink-50/50 transition cursor-pointer relative" onclick="document.getElementById('input-image').click()">
+                            <label class="block text-xs font-semibold text-pink-400 mb-1">ระดับยศที่ต้องการสมัครขอปรับ <span class="text-rose-400">*</span></label>
+                            <select id="input-target-level" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
+                                <option value="Basic Agent">Basic Agent (ระดับเริ่มต้น)</option>
+                                <option value="Premium Agent">Premium Agent (ตัวแทนระดับกลาง)</option>
+                                <option value="VIP Partner">VIP Partner (ตัวแทนระดับ VIP)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-pink-400 mb-1">อัปโหลดรูปภาพหน้าร้าน <span class="text-rose-400">*</span></label>
+                            <div class="border-2 border-dashed border-pink-200/70 rounded-2xl p-4 text-center bg-pink-50/10 hover:bg-pink-50/30 transition cursor-pointer relative" onclick="document.getElementById('input-image').click()">
                                 <input type="file" id="input-image" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
                                 <div id="upload-placeholder" class="space-y-1">
                                     <div class="text-2xl">📸</div>
-                                    <p class="text-xs text-pink-500 font-medium">คลิกเพื่อเลือกรูปภาพหน้าร้าน</p>
+                                    <p class="text-xs text-pink-400 font-medium">คลิกเพื่อเลือกรูปภาพหน้าร้าน</p>
                                     <p class="text-[10px] text-gray-400">ระบบบีบอัดภาพให้อัตโนมัติก่อนบันทึก</p>
                                 </div>
                                 <div id="upload-preview-wrapper" class="hidden relative">
                                     <img id="upload-preview" src="" class="max-h-36 mx-auto rounded-lg shadow-sm border border-pink-100 object-cover">
-                                    <button type="button" onclick="clearImageSelect(event)" class="absolute -top-2 -right-2 bg-red-400 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow hover:bg-red-500">✕</button>
+                                    <button type="button" onclick="clearImageSelect(event)" class="absolute -top-2 -right-2 bg-rose-300 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow hover:bg-rose-400">✕</button>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="w-full py-3 rounded-xl font-semibold btn-pink flex items-center justify-center gap-2 text-sm shadow-md">
+                        <button type="submit" class="w-full py-3 rounded-xl font-semibold btn-pink flex items-center justify-center gap-2 text-xs shadow-sm">
                             <span>🚀</span> ส่งข้อมูลยืนยันตัวแทน
                         </button>
                     </form>
@@ -186,23 +225,23 @@
                     
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                         <div>
-                            <h2 class="text-lg font-bold text-pink-600 flex items-center gap-2">
+                            <h2 class="text-lg font-bold text-pink-400 flex items-center gap-2">
                                 <span>🔍</span> ตรวจสอบสถานะการยืนยันตัวตน
                             </h2>
-                            <p class="text-xs text-gray-500">ค้นหายูสเซอร์ของคุณเพื่อติดตามการยืนยันและการปรับยศ</p>
+                            <p class="text-xs text-gray-400">ค้นหายูสเซอร์ของคุณเพื่อติดตามการยืนยันและสิทธิ์ยศ</p>
                         </div>
                         <div class="relative w-full sm:w-64">
-                            <input type="text" id="search-agent-input" oninput="renderAgentStatusList()" placeholder="พิมพ์ชื่อยูสเซอร์เพื่อค้นหา..." class="w-full pl-9 pr-3 py-2 rounded-xl border border-pink-200 text-xs focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/20">
-                            <span class="absolute left-3 top-2.5 text-xs text-pink-400">🔎</span>
+                            <input type="text" id="search-agent-input" oninput="renderAgentStatusList()" placeholder="พิมพ์ชื่อยูสเซอร์เพื่อค้นหา..." class="w-full pl-9 pr-3 py-2 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
+                            <span class="absolute left-3 top-2.5 text-xs text-pink-300">🔎</span>
                         </div>
                     </div>
 
                     <!-- Status Filter Tabs -->
                     <div class="flex gap-2 mb-4 overflow-x-auto pb-1 text-xs">
-                        <button onclick="setAgentFilter('all')" id="filter-agent-all" class="px-3 py-1.5 rounded-lg bg-pink-500 text-white font-medium">ทั้งหมด</button>
-                        <button onclick="setAgentFilter('รอการตรวจสอบ')" id="filter-agent-pending" class="px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium">รอการตรวจสอบ</button>
-                        <button onclick="setAgentFilter('ผ่านการยืนยัน')" id="filter-agent-approved" class="px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium">ผ่านการยืนยัน</button>
-                        <button onclick="setAgentFilter('ไม่ผ่านการยืนยัน')" id="filter-agent-rejected" class="px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium">ไม่ผ่านการยืนยัน</button>
+                        <button onclick="setAgentFilter('all')" id="filter-agent-all" class="px-3 py-1.5 rounded-lg bg-pink-300 text-white font-medium">ทั้งหมด</button>
+                        <button onclick="setAgentFilter('รอการตรวจสอบ')" id="filter-agent-pending" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">รอการตรวจสอบ</button>
+                        <button onclick="setAgentFilter('ผ่านการยืนยัน')" id="filter-agent-approved" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ผ่านการยืนยัน</button>
+                        <button onclick="setAgentFilter('ไม่ผ่านการยืนยัน')" id="filter-agent-rejected" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ไม่ผ่านการยืนยัน</button>
                     </div>
 
                     <!-- Requests Status Cards List -->
@@ -211,6 +250,80 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- SUB-TAB 2: Agent Level & Benefit Matrix (ระบบสิทธิประโยชน์ตัวแทนแต่ละยศ) -->
+            <div id="agent-subtab-benefits-content" class="paper-card p-6 relative space-y-6 hidden">
+                <div class="tape tape-lavender tape-1"></div>
+                
+                <div>
+                    <h2 class="text-lg font-bold text-pink-400 flex items-center gap-2">
+                        <span>👑</span> ตารางเปรียบเทียบระดับยศตัวแทน & สิทธิประโยชน์บนเว็บกดแอป
+                    </h2>
+                    <p class="text-xs text-gray-400">เมื่อผ่านการยืนยันยูสเซอร์และปรับยศแล้ว คุณจะได้รับสิทธิพิเศษตามระดับดังต่อไปนี้</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Basic Level Card -->
+                    <div class="bg-gradient-to-b from-sky-50/50 to-white p-5 rounded-2xl border border-sky-100 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="badge level-badge-basic">Basic Agent</span>
+                            <span class="text-xs text-sky-600 font-semibold">เริ่มต้น</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-700">ตัวแทนทั่วไป</h3>
+                        <ul class="text-xs space-y-2 text-gray-500">
+                            <li class="flex items-center gap-1.5"><span>✅</span> ส่วนลดสติ๊กเกอร์/แอป 5%</li>
+                            <li class="flex items-center gap-1.5"><span>✅</span> กดงานในระบบปกติ</li>
+                            <li class="flex items-center gap-1.5 text-gray-300"><span>❌</span> ไม่มีคิวเสริมด่วน</li>
+                            <li class="flex items-center gap-1.5 text-gray-300"><span>❌</span> สิทธิ์เปิดรับตัวแทนย่อย</li>
+                        </ul>
+                    </div>
+
+                    <!-- Premium Level Card -->
+                    <div class="bg-gradient-to-b from-purple-50/50 to-white p-5 rounded-2xl border border-purple-100 space-y-3 relative overflow-hidden">
+                        <div class="flex justify-between items-center">
+                            <span class="badge level-badge-premium">Premium Agent</span>
+                            <span class="text-xs text-purple-600 font-semibold">ยอดนิยม</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-purple-800">ตัวแทนระดับพรีเมียม</h3>
+                        <ul class="text-xs space-y-2 text-purple-700">
+                            <li class="flex items-center gap-1.5"><span>✨</span> ส่วนลดราคาส่งแอป 15%</li>
+                            <li class="flex items-center gap-1.5"><span>✨</span> ได้รับการอนุมัติคิวไวขึ้น 2 เท่า</li>
+                            <li class="flex items-center gap-1.5"><span>✨</span> ซัพพอร์ตเคสพิเศษ 24 ชม.</li>
+                            <li class="flex items-center gap-1.5 text-gray-300"><span>❌</span> สิทธิ์เปิดรับตัวแทนย่อย</li>
+                        </ul>
+                    </div>
+
+                    <!-- VIP Level Card -->
+                    <div class="bg-gradient-to-b from-amber-50/50 to-white p-5 rounded-2xl border border-amber-100 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="badge level-badge-vip">VIP Partner</span>
+                            <span class="text-xs text-amber-600 font-semibold">สูงสุด</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-amber-800">ตัวแทนระดับ VIP</h3>
+                        <ul class="text-xs space-y-2 text-amber-800">
+                            <li class="flex items-center gap-1.5"><span>👑</span> ราคาส่งพิเศษลดสูงสุด 25%</li>
+                            <li class="flex items-center gap-1.5"><span>👑</span> ช่องทางกดแอป VIP ช่องทางด่วน</li>
+                            <li class="flex items-center gap-1.5"><span>👑</span> สามารถสร้างทีมตัวแทนย่อยได้</li>
+                            <li class="flex items-center gap-1.5"><span>👑</span> โบนัสเครดิตสะสมประจำเดือน</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-TAB 3: System Notifications & Audit Log (ระบบประวัติการอัปเดตสิทธิ์) -->
+            <div id="agent-subtab-logs-content" class="paper-card p-6 relative space-y-4 hidden">
+                <div class="tape tape-yellow tape-2"></div>
+                <div>
+                    <h2 class="text-lg font-bold text-pink-400 flex items-center gap-2">
+                        <span>🔔</span> ประวัติบันทึกการปรับยศและการแจ้งเตือนระบบ
+                    </h2>
+                    <p class="text-xs text-gray-400">แสดงลำดับเหตุการณ์การยืนยันและการเปลี่ยนยศล่าสุดในระบบ</p>
+                </div>
+
+                <div id="agent-logs-timeline" class="space-y-3 text-xs">
+                    <!-- Generated Dynamically -->
+                </div>
             </div>
 
         </main>
@@ -223,14 +336,14 @@
             <!-- Admin Lock Screen Overlay if Not Authenticated -->
             <div id="admin-auth-card" class="paper-card p-8 max-w-md mx-auto text-center space-y-4 my-10 relative">
                 <div class="tape tape-yellow tape-1"></div>
-                <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-3xl mx-auto text-pink-500">
+                <div class="w-16 h-16 bg-pink-100/60 rounded-full flex items-center justify-center text-3xl mx-auto text-pink-400">
                     🔒
                 </div>
-                <h2 class="text-xl font-bold text-pink-600">เข้าสู่ระบบแอดมิน</h2>
-                <p class="text-xs text-gray-500">กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการข้อมูลตัวแทน</p>
+                <h2 class="text-xl font-bold text-pink-400">เข้าสู่ระบบแอดมิน</h2>
+                <p class="text-xs text-gray-400">กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการข้อมูลและปรับยศตัวแทน</p>
                 <div class="space-y-3">
-                    <input type="password" id="admin-password-input" placeholder="รหัสผ่าน (ทดสอบใช้: admin123)" class="w-full px-4 py-2.5 text-center text-sm rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300">
-                    <button onclick="handleAdminLogin()" class="w-full py-2.5 rounded-xl font-semibold btn-pink text-sm">เข้าสู่ระบบ</button>
+                    <input type="password" id="admin-password-input" placeholder="รหัสผ่าน (ทดสอบใช้: admin123)" class="w-full px-4 py-2.5 text-center text-xs rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-200 text-gray-600">
+                    <button onclick="handleAdminLogin()" class="w-full py-2.5 rounded-xl font-semibold btn-pink text-xs">เข้าสู่ระบบ</button>
                 </div>
             </div>
 
@@ -239,21 +352,21 @@
                 
                 <!-- Admin Dashboard Overview Cards -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="paper-card p-4 text-center border-l-4 border-l-blue-400">
-                        <p class="text-xs text-gray-500 font-medium">คำขอทั้งหมด</p>
-                        <p id="stat-total" class="text-2xl font-bold font-fredoka text-gray-700 mt-1">0</p>
+                    <div class="paper-card p-4 text-center border-l-4 border-l-sky-300">
+                        <p class="text-xs text-gray-400 font-medium">คำขอทั้งหมด</p>
+                        <p id="stat-total" class="text-2xl font-bold font-fredoka text-gray-600 mt-1">0</p>
                     </div>
-                    <div class="paper-card p-4 text-center border-l-4 border-l-amber-400">
-                        <p class="text-xs text-gray-500 font-medium">⏳ รอตรวจสอบ</p>
+                    <div class="paper-card p-4 text-center border-l-4 border-l-amber-300">
+                        <p class="text-xs text-gray-400 font-medium">⏳ รอตรวจสอบ</p>
                         <p id="stat-pending" class="text-2xl font-bold font-fredoka text-amber-500 mt-1">0</p>
                     </div>
-                    <div class="paper-card p-4 text-center border-l-4 border-l-emerald-400">
-                        <p class="text-xs text-gray-500 font-medium">✅ ผ่านการยืนยัน</p>
-                        <p id="stat-approved" class="text-2xl font-bold font-fredoka text-emerald-600 mt-1">0</p>
+                    <div class="paper-card p-4 text-center border-l-4 border-l-emerald-300">
+                        <p class="text-xs text-gray-400 font-medium">✅ ผ่านการยืนยัน</p>
+                        <p id="stat-approved" class="text-2xl font-bold font-fredoka text-emerald-500 mt-1">0</p>
                     </div>
-                    <div class="paper-card p-4 text-center border-l-4 border-l-rose-400">
-                        <p class="text-xs text-gray-500 font-medium">❌ ไม่ผ่านการยืนยัน</p>
-                        <p id="stat-rejected" class="text-2xl font-bold font-fredoka text-rose-500 mt-1">0</p>
+                    <div class="paper-card p-4 text-center border-l-4 border-l-rose-300">
+                        <p class="text-xs text-gray-400 font-medium">❌ ไม่ผ่านการยืนยัน</p>
+                        <p id="stat-rejected" class="text-2xl font-bold font-fredoka text-rose-400 mt-1">0</p>
                     </div>
                 </div>
 
@@ -263,40 +376,44 @@
                     
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                         <div>
-                            <h2 class="text-lg font-bold text-pink-600 flex items-center gap-2">
-                                <span>📋</span> รายการคำขอยืนยันยูสเซอร์ตัวแทนทั้งหมด
+                            <h2 class="text-lg font-bold text-pink-400 flex items-center gap-2">
+                                <span>📋</span> รายการคำขอยืนยันยูสเซอร์ & อัปเดตสิทธิ์ตัวแทน
                             </h2>
-                            <p class="text-xs text-gray-500">จัดการ ตรวจสอบรูปภาพหน้าร้าน และอัปเดตสถานะการยืนยัน/ปรับยศ</p>
+                            <p class="text-xs text-gray-400">ตรวจสอบรูปภาพหน้าร้าน กำหนดระดับยศตัวแทน และส่งการแจ้งเตือน</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-                            <input type="text" id="admin-search-input" oninput="renderAdminTable()" placeholder="ค้นหาชื่อยูสเซอร์/การติดต่อ..." class="px-3.5 py-2 rounded-xl border border-pink-200 text-xs focus:outline-none focus:ring-2 focus:ring-pink-300 w-full md:w-64 bg-pink-50/20">
-                            <button onclick="logoutAdmin()" class="px-3 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-semibold">ออกจากระบบ</button>
+                            <button onclick="exportDataJSON()" class="px-3 py-2 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-500 text-xs font-semibold border border-pink-200 transition">
+                                📥 ส่งออกข้อมูล
+                            </button>
+                            <input type="text" id="admin-search-input" oninput="renderAdminTable()" placeholder="ค้นหาชื่อยูสเซอร์/การติดต่อ..." class="px-3.5 py-2 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 w-full md:w-56 bg-pink-50/20 text-gray-600">
+                            <button onclick="logoutAdmin()" class="px-3 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-500 text-xs font-semibold">ออกจากระบบ</button>
                         </div>
                     </div>
 
                     <!-- Admin Filter Tabs -->
                     <div class="flex gap-2 mb-4 overflow-x-auto pb-1 text-xs">
-                        <button onclick="setAdminFilter('all')" id="filter-admin-all" class="px-3 py-1.5 rounded-lg bg-pink-500 text-white font-medium">ทั้งหมด</button>
-                        <button onclick="setAdminFilter('รอการตรวจสอบ')" id="filter-admin-pending" class="px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium">รอการตรวจสอบ</button>
-                        <button onclick="setAdminFilter('ผ่านการยืนยัน')" id="filter-admin-approved" class="px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium">ผ่านการยืนยัน</button>
-                        <button onclick="setAdminFilter('ไม่ผ่านการยืนยัน')" id="filter-admin-rejected" class="px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium">ไม่ผ่านการยืนยัน</button>
+                        <button onclick="setAdminFilter('all')" id="filter-admin-all" class="px-3 py-1.5 rounded-lg bg-pink-300 text-white font-medium">ทั้งหมด</button>
+                        <button onclick="setAdminFilter('รอการตรวจสอบ')" id="filter-admin-pending" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">รอการตรวจสอบ</button>
+                        <button onclick="setAdminFilter('ผ่านการยืนยัน')" id="filter-admin-approved" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ผ่านการยืนยัน</button>
+                        <button onclick="setAdminFilter('ไม่ผ่านการยืนยัน')" id="filter-admin-rejected" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ไม่ผ่านการยืนยัน</button>
                     </div>
 
                     <!-- Table Responsive Container -->
                     <div class="overflow-x-auto rounded-xl border border-pink-100">
                         <table class="w-full text-left text-xs text-gray-600">
-                            <thead class="bg-pink-100/70 text-pink-700 font-semibold uppercase tracking-wider">
+                            <thead class="bg-pink-50/80 text-pink-400 font-semibold tracking-wider">
                                 <tr>
                                     <th class="p-3">เวลาที่ส่งคำขอ</th>
                                     <th class="p-3">ชื่อยูสเซอร์</th>
                                     <th class="p-3">ช่องทางติดต่อ</th>
+                                    <th class="p-3">ยศที่สมัคร</th>
                                     <th class="p-3">รูปหน้าร้าน</th>
-                                    <th class="p-3">สถานะการยืนยัน</th>
-                                    <th class="p-3">สถานะการปรับยศ</th>
+                                    <th class="p-3">สถานะยืนยัน</th>
+                                    <th class="p-3">สถานะปรับยศ</th>
                                     <th class="p-3 text-center">จัดการ</th>
                                 </tr>
                             </thead>
-                            <tbody id="admin-table-body" class="divide-y divide-pink-100 bg-white">
+                            <tbody id="admin-table-body" class="divide-y divide-pink-50 bg-white">
                                 <!-- Dynamic Data Rows -->
                             </tbody>
                         </table>
@@ -315,45 +432,54 @@
     <!-- ========================================== -->
 
     <!-- Modal 1: Image Preview Modal -->
-    <div id="modal-image" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-4 relative shadow-2xl space-y-3">
-            <div class="flex justify-between items-center border-b border-pink-100 pb-2">
-                <h3 class="text-sm font-bold text-pink-600">รูปภาพหน้าร้านของตัวแทน</h3>
-                <button onclick="closeModal('modal-image')" class="text-gray-400 hover:text-gray-600 text-xl font-bold">✕</button>
+    <div id="modal-image" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-4 relative shadow-2xl space-y-3 border border-pink-100">
+            <div class="flex justify-between items-center border-b border-pink-50 pb-2">
+                <h3 class="text-xs font-bold text-pink-400">รูปภาพหน้าร้านของตัวแทน</h3>
+                <button onclick="closeModal('modal-image')" class="text-gray-300 hover:text-gray-500 text-lg font-bold">✕</button>
             </div>
-            <div class="flex justify-center bg-gray-50 p-2 rounded-xl">
+            <div class="flex justify-center bg-pink-50/20 p-2 rounded-xl">
                 <img id="modal-image-src" src="" class="max-h-[70vh] rounded-lg object-contain">
             </div>
         </div>
     </div>
 
-    <!-- Modal 2: Admin Status Update & Edit Modal -->
-    <div id="modal-edit-status" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl space-y-4">
-            <div class="flex justify-between items-center border-b border-pink-100 pb-3">
-                <h3 class="text-base font-bold text-pink-600 flex items-center gap-1.5">
-                    <span>✏️</span> อัปเดตสถานะและข้อมูลตัวแทน
+    <!-- Modal 2: Admin Status Update & Level Assignment Modal -->
+    <div id="modal-edit-status" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl space-y-4 border border-pink-100">
+            <div class="flex justify-between items-center border-b border-pink-50 pb-3">
+                <h3 class="text-sm font-bold text-pink-400 flex items-center gap-1.5">
+                    <span>✏️</span> อัปเดตสถานะการยืนยัน & ปรับระดับยศตัวแทน
                 </h3>
-                <button onclick="closeModal('modal-edit-status')" class="text-gray-400 hover:text-gray-600 text-xl font-bold">✕</button>
+                <button onclick="closeModal('modal-edit-status')" class="text-gray-300 hover:text-gray-500 text-lg font-bold">✕</button>
             </div>
 
             <form id="admin-edit-form" onsubmit="saveAdminStatusUpdate(event)" class="space-y-4">
                 <input type="hidden" id="edit-req-id">
 
                 <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">ชื่อยูสเซอร์ตัวแทน</label>
-                    <input type="text" id="edit-username" required class="w-full px-3 py-2 rounded-xl border border-pink-200 text-xs focus:ring-2 focus:ring-pink-300">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">ชื่อยูสเซอร์ตัวแทน</label>
+                    <input type="text" id="edit-username" required class="w-full px-3 py-2 rounded-xl border border-pink-100 text-xs focus:ring-2 focus:ring-pink-200 text-gray-600">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">ช่องทางติดต่อ</label>
-                    <input type="text" id="edit-contact" required class="w-full px-3 py-2 rounded-xl border border-pink-200 text-xs focus:ring-2 focus:ring-pink-300">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">ช่องทางติดต่อ</label>
+                    <input type="text" id="edit-contact" required class="w-full px-3 py-2 rounded-xl border border-pink-100 text-xs focus:ring-2 focus:ring-pink-200 text-gray-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">กำหนดระดับยศตัวแทน (Level)</label>
+                    <select id="edit-target-level" class="w-full px-3 py-2 rounded-xl border border-pink-100 text-xs focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
+                        <option value="Basic Agent">Basic Agent (ระดับเริ่มต้น)</option>
+                        <option value="Premium Agent">Premium Agent (ตัวแทนระดับกลาง)</option>
+                        <option value="VIP Partner">VIP Partner (ตัวแทนระดับ VIP)</option>
+                    </select>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">สถานะการยืนยัน</label>
-                        <select id="edit-verify-status" onchange="toggleRejectReasonInput()" class="w-full px-3 py-2 rounded-xl border border-pink-200 text-xs focus:ring-2 focus:ring-pink-300 bg-white">
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">สถานะการยืนยัน</label>
+                        <select id="edit-verify-status" onchange="toggleRejectReasonInput()" class="w-full px-3 py-2 rounded-xl border border-pink-100 text-xs focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
                             <option value="รอการตรวจสอบ">รอการตรวจสอบ</option>
                             <option value="ผ่านการยืนยัน">ผ่านการยืนยัน</option>
                             <option value="ไม่ผ่านการยืนยัน">ไม่ผ่านการยืนยัน</option>
@@ -361,8 +487,8 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">สถานะการปรับยศ</label>
-                        <select id="edit-rank-status" class="w-full px-3 py-2 rounded-xl border border-pink-200 text-xs focus:ring-2 focus:ring-pink-300 bg-white">
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">สถานะการปรับยศ</label>
+                        <select id="edit-rank-status" class="w-full px-3 py-2 rounded-xl border border-pink-100 text-xs focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
                             <option value="รอดำเนินการปรับยศ">รอดำเนินการปรับยศ</option>
                             <option value="ปรับยศเรียบร้อยแล้ว">ปรับยศเรียบร้อยแล้ว</option>
                         </select>
@@ -370,13 +496,13 @@
                 </div>
 
                 <div id="reject-reason-box" class="hidden space-y-1">
-                    <label class="block text-xs font-semibold text-red-600 mb-1">เหตุผลที่ไม่ผ่านการยืนยัน <span class="text-red-500">*</span></label>
-                    <textarea id="edit-reject-reason" rows="2" placeholder="ระบุเหตุผล เช่น รูปภาพหน้าร้านไม่ชัดเจน หรือ ยูสเซอร์ไม่ถูกต้อง" class="w-full px-3 py-2 rounded-xl border border-red-200 text-xs focus:ring-2 focus:ring-red-300 bg-red-50/20"></textarea>
+                    <label class="block text-xs font-semibold text-rose-500 mb-1">เหตุผลที่ไม่ผ่านการยืนยัน <span class="text-rose-400">*</span></label>
+                    <textarea id="edit-reject-reason" rows="2" placeholder="ระบุเหตุผล เช่น รูปภาพหน้าร้านไม่ชัดเจน หรือ ยูสเซอร์ไม่ถูกต้อง" class="w-full px-3 py-2 rounded-xl border border-rose-200 text-xs focus:ring-2 focus:ring-rose-200 bg-rose-50/20 text-gray-600"></textarea>
                 </div>
 
                 <div class="pt-2 flex gap-2">
-                    <button type="button" onclick="closeModal('modal-edit-status')" class="w-1/2 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-xs font-medium hover:bg-gray-50">ยกเลิก</button>
-                    <button type="submit" class="w-1/2 py-2.5 rounded-xl btn-pink text-xs font-semibold shadow">บันทึกการแก้ไข</button>
+                    <button type="button" onclick="closeModal('modal-edit-status')" class="w-1/2 py-2.5 rounded-xl border border-gray-100 text-gray-400 text-xs font-medium hover:bg-gray-50">ยกเลิก</button>
+                    <button type="submit" class="w-1/2 py-2.5 rounded-xl btn-pink text-xs font-semibold shadow-sm">บันทึกการแก้ไข</button>
                 </div>
             </form>
         </div>
@@ -391,6 +517,7 @@
                 id: "REQ-1001",
                 username: "julie_shop01",
                 contact: "Line: @julieshop / 089-111-2222",
+                targetLevel: "VIP Partner",
                 image: "https://images.unsplash.com/photo-1527030280862-64139fba04ca?w=400&auto=format&fit=crop&q=60",
                 verifyStatus: "ผ่านการยืนยัน",
                 rankStatus: "ปรับยศเรียบร้อยแล้ว",
@@ -402,6 +529,7 @@
                 id: "REQ-1002",
                 username: "cute_station_app",
                 contact: "FB: Cute Station App",
+                targetLevel: "Premium Agent",
                 image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&auto=format&fit=crop&q=60",
                 verifyStatus: "รอการตรวจสอบ",
                 rankStatus: "รอดำเนินการปรับยศ",
@@ -413,6 +541,7 @@
                 id: "REQ-1003",
                 username: "pastel_store99",
                 contact: "Tel: 082-999-8888",
+                targetLevel: "Basic Agent",
                 image: "https://images.unsplash.com/photo-1556742049-0a67d577c4d3?w=400&auto=format&fit=crop&q=60",
                 verifyStatus: "ไม่ผ่านการยืนยัน",
                 rankStatus: "รอดำเนินการปรับยศ",
@@ -424,7 +553,9 @@
 
         // Global State Management
         let requestsData = [];
-        let currentView = 'agent'; // 'agent' | 'admin'
+        let systemLogs = [];
+        let currentView = 'agent';
+        let currentAgentSubTab = 'verify';
         let isAdminLoggedIn = false;
         let selectedBase64Image = "";
         let agentFilter = 'all';
@@ -449,6 +580,12 @@
                 requestsData = INITIAL_MOCK_DATA;
                 saveDataToStorage();
             }
+
+            // Create initial activity logs
+            systemLogs = [
+                { time: "2026-11-01 11:05:00", text: "แอดมินอัปเดตสถานะยูสเซอร์ pastel_store99 เป็น 'ไม่ผ่านการยืนยัน'" },
+                { time: "2026-11-01 09:20:00", text: "ปรับยศยูสเซอร์ julie_shop01 เป็น VIP Partner เรียบร้อยแล้ว" }
+            ];
         }
 
         function saveDataToStorage() {
@@ -472,18 +609,45 @@
                 agentView.classList.remove('hidden');
                 adminView.classList.add('hidden');
 
-                btnAgent.className = "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-white text-pink-600 shadow-sm";
-                btnAdmin.className = "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 text-pink-400 hover:text-pink-600";
+                btnAgent.className = "px-4 py-1.5 rounded-xl text-sm transition-all duration-200 soft-tab-active";
+                btnAdmin.className = "px-4 py-1.5 rounded-xl text-sm transition-all duration-200 soft-tab-inactive";
                 
                 renderAgentStatusList();
             } else {
                 agentView.classList.add('hidden');
                 adminView.classList.remove('hidden');
 
-                btnAdmin.className = "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-white text-pink-600 shadow-sm";
-                btnAgent.className = "px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 text-pink-400 hover:text-pink-600";
+                btnAdmin.className = "px-4 py-1.5 rounded-xl text-sm transition-all duration-200 soft-tab-active";
+                btnAgent.className = "px-4 py-1.5 rounded-xl text-sm transition-all duration-200 soft-tab-inactive";
 
                 checkAdminAuthUI();
+            }
+        }
+
+        // Sub Tab Switching for Agent View
+        function switchAgentSubTab(tab) {
+            currentAgentSubTab = tab;
+            const tabVerify = document.getElementById('agent-tab-verify');
+            const tabBenefits = document.getElementById('agent-tab-benefits');
+            const tabLogs = document.getElementById('agent-tab-logs');
+
+            const contentVerify = document.getElementById('agent-subtab-verify-content');
+            const contentBenefits = document.getElementById('agent-subtab-benefits-content');
+            const contentLogs = document.getElementById('agent-subtab-logs-content');
+
+            [tabVerify, tabBenefits, tabLogs].forEach(t => t.className = "px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-inactive");
+            [contentVerify, contentBenefits, contentLogs].forEach(c => c.classList.add('hidden'));
+
+            if (tab === 'verify') {
+                tabVerify.className = "px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-active";
+                contentVerify.classList.remove('hidden');
+            } else if (tab === 'benefits') {
+                tabBenefits.className = "px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-active";
+                contentBenefits.classList.remove('hidden');
+            } else if (tab === 'logs') {
+                tabLogs.className = "px-4 py-2 rounded-xl text-xs font-semibold transition soft-tab-active";
+                contentLogs.classList.remove('hidden');
+                renderLogsTimeline();
             }
         }
 
@@ -498,7 +662,6 @@
             reader.onload = function(e) {
                 const img = new Image();
                 img.onload = function() {
-                    // Compress image using canvas
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     const maxWidth = 800;
@@ -522,7 +685,7 @@
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
 
-                    selectedBase64Image = canvas.toDataURL('image/jpeg', 0.7); // compress quality 0.7
+                    selectedBase64Image = canvas.toDataURL('image/jpeg', 0.7);
                     
                     document.getElementById('upload-preview').src = selectedBase64Image;
                     document.getElementById('upload-placeholder').classList.add('hidden');
@@ -545,6 +708,7 @@
             e.preventDefault();
             const username = document.getElementById('input-username').value.trim();
             const contact = document.getElementById('input-contact').value.trim();
+            const targetLevel = document.getElementById('input-target-level').value;
 
             if (!selectedBase64Image) {
                 showToast('กรุณาเลือกรูปภาพหน้าร้านประกอบการตรวจสอบ', 'error');
@@ -563,6 +727,7 @@
                 id: 'REQ-' + Math.floor(1000 + Math.random() * 9000),
                 username: username,
                 contact: contact,
+                targetLevel: targetLevel,
                 image: selectedBase64Image,
                 verifyStatus: 'รอการตรวจสอบ',
                 rankStatus: 'รอดำเนินการปรับยศ',
@@ -574,13 +739,16 @@
             requestsData.unshift(newRequest);
             saveDataToStorage();
 
-            // Reset form
+            systemLogs.unshift({
+                time: formattedTime,
+                text: `ส่งคำขอยืนยันใหม่โดยยูสเซอร์ ${username} (ขอยศ ${targetLevel})`
+            });
+
             document.getElementById('verify-form').reset();
             clearImageSelect();
 
             showToast(`ส่งข้อมูลยืนยันยูสเซอร์ "${username}" เรียบร้อยแล้ว!`, 'success');
             
-            // Notify Admin Mock Toast
             setTimeout(() => {
                 showToast(`🔔 [แจ้งเตือนแอดมิน] มีคำขอยืนยันใหม่จาก ${username} (${formattedTime})`, 'info');
             }, 1200);
@@ -598,9 +766,9 @@
                         (b === 'pending' && filter === 'รอการตรวจสอบ') ||
                         (b === 'approved' && filter === 'ผ่านการยืนยัน') ||
                         (b === 'rejected' && filter === 'ไม่ผ่านการยืนยัน')) {
-                        el.className = "px-3 py-1.5 rounded-lg bg-pink-500 text-white font-medium";
+                        el.className = "px-3 py-1.5 rounded-lg bg-pink-300 text-white font-medium";
                     } else {
-                        el.className = "px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium";
+                        el.className = "px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium";
                     }
                 }
             });
@@ -619,9 +787,9 @@
 
             if (filtered.length === 0) {
                 listContainer.innerHTML = `
-                    <div class="text-center py-10 bg-pink-50/40 rounded-2xl border border-dashed border-pink-200">
-                        <p class="text-3xl mb-1">🔍</p>
-                        <p class="text-xs text-gray-500">ไม่พบคําขอยืนยันตามเงื่อนไขที่ระบุ</p>
+                    <div class="text-center py-10 bg-pink-50/20 rounded-2xl border border-dashed border-pink-100">
+                        <p class="text-2xl mb-1">🔍</p>
+                        <p class="text-xs text-gray-400">ไม่พบคําขอยืนยันตามเงื่อนไขที่ระบุ</p>
                     </div>
                 `;
                 return;
@@ -635,33 +803,38 @@
                 if (req.verifyStatus === 'ไม่ผ่านการยืนยัน') statusBadgeClass = 'badge-rejected';
 
                 let rankBadgeClass = req.rankStatus === 'ปรับยศเรียบร้อยแล้ว' ? 'badge-rank-done' : 'badge-rank-pending';
+                
+                let levelBadgeClass = 'level-badge-basic';
+                if (req.targetLevel === 'Premium Agent') levelBadgeClass = 'level-badge-premium';
+                if (req.targetLevel === 'VIP Partner') levelBadgeClass = 'level-badge-vip';
 
                 return `
-                    <div class="bg-white p-4 rounded-2xl border border-pink-100 hover:shadow-md transition space-y-3">
+                    <div class="bg-white p-4 rounded-2xl border border-pink-100/70 hover:shadow-sm transition space-y-3">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-pink-50 pb-2">
                             <div class="flex items-center gap-2">
-                                <span class="font-bold text-pink-700 text-sm">${escapeHtml(req.username)}</span>
-                                <span class="text-[10px] text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">${req.id}</span>
+                                <span class="font-bold text-pink-400 text-sm font-fredoka">${escapeHtml(req.username)}</span>
+                                <span class="badge ${levelBadgeClass}">${req.targetLevel || 'Basic Agent'}</span>
+                                <span class="text-[9px] text-gray-300 font-mono">${req.id}</span>
                             </div>
-                            <span class="text-[10px] text-gray-400">🕒 ยื่นเมื่อ: ${req.timestamp}</span>
+                            <span class="text-[10px] text-gray-400">🕒 ${req.timestamp}</span>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                            <div class="space-y-1">
-                                <p class="text-gray-500">📞 <span class="text-gray-700 font-medium">${escapeHtml(req.contact)}</span></p>
-                                <div class="flex items-center gap-1.5 pt-1">
-                                    <span class="text-gray-500">ผลการยืนยัน:</span>
+                            <div class="space-y-1.5">
+                                <p class="text-gray-400">📞 <span class="text-gray-600 font-medium">${escapeHtml(req.contact)}</span></p>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-gray-400">ผลยืนยัน:</span>
                                     <span class="badge ${statusBadgeClass}">${verifyText}</span>
                                 </div>
                                 <div class="flex items-center gap-1.5">
-                                    <span class="text-gray-500">สถานะปรับยศ:</span>
+                                    <span class="text-gray-400">สถานะปรับยศ:</span>
                                     <span class="badge ${rankBadgeClass}">${req.rankStatus}</span>
                                 </div>
                             </div>
 
-                            <div class="flex items-center justify-between sm:justify-end gap-3 bg-pink-50/30 p-2 rounded-xl">
+                            <div class="flex items-center justify-between sm:justify-end gap-3 bg-pink-50/20 p-2 rounded-xl border border-pink-50">
                                 ${req.image ? `
-                                    <button onclick="openImageModal('${req.image}')" class="flex items-center gap-1 text-[11px] text-pink-600 hover:underline font-medium">
+                                    <button onclick="openImageModal('${req.image}')" class="flex items-center gap-1 text-[11px] text-pink-400 hover:underline font-medium">
                                         <span>🖼️</span> ดูรูปหน้าร้าน
                                     </button>
                                 ` : ''}
@@ -669,19 +842,37 @@
                         </div>
 
                         ${req.verifyStatus === 'ไม่ผ่านการยืนยัน' && req.rejectReason ? `
-                            <div class="bg-red-50 p-2.5 rounded-xl border border-red-100 text-xs text-red-700">
+                            <div class="bg-rose-50/60 p-2.5 rounded-xl border border-rose-100 text-xs text-rose-700">
                                 <span class="font-bold">⚠️ เหตุผลที่ไม่ผ่าน:</span> ${escapeHtml(req.rejectReason)}
                             </div>
                         ` : ''}
 
                         ${req.rankStatus === 'ปรับยศเรียบร้อยแล้ว' ? `
-                            <div class="bg-purple-50 p-2.5 rounded-xl border border-purple-100 text-xs text-purple-700 flex items-center gap-1.5">
-                                <span>🎉</span> <b>แจ้งเตือน:</b> ยูสเซอร์นี้ได้รับการปรับยศบนเว็บไซต์กดแอปพรีเมียมเรียบร้อยแล้ว!
+                            <div class="bg-purple-50/60 p-2.5 rounded-xl border border-purple-100 text-xs text-purple-700 flex items-center gap-1.5">
+                                <span>🎉</span> <b>แจ้งเตือนสิทธิ์:</b> ยูสเซอร์นี้ได้รับการปรับยศเป็น <b>${req.targetLevel}</b> บนระบบกดแอปเรียบร้อยแล้ว!
                             </div>
                         ` : ''}
                     </div>
                 `;
             }).join('');
+        }
+
+        function renderLogsTimeline() {
+            const container = document.getElementById('agent-logs-timeline');
+            if (systemLogs.length === 0) {
+                container.innerHTML = `<p class="text-gray-400 text-xs">ยังไม่มีประวัติการแจ้งเตือน</p>`;
+                return;
+            }
+
+            container.innerHTML = systemLogs.map(log => `
+                <div class="flex items-start gap-3 bg-pink-50/20 p-3 rounded-xl border border-pink-50">
+                    <span class="text-base">📍</span>
+                    <div>
+                        <p class="text-gray-600 font-medium">${escapeHtml(log.text)}</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">${log.time}</p>
+                    </div>
+                </div>
+            `).join('');
         }
 
         // --- ADMIN SECTION FUNCTIONS ---
@@ -728,9 +919,9 @@
                         (b === 'pending' && filter === 'รอการตรวจสอบ') ||
                         (b === 'approved' && filter === 'ผ่านการยืนยัน') ||
                         (b === 'rejected' && filter === 'ไม่ผ่านการยืนยัน')) {
-                        el.className = "px-3 py-1.5 rounded-lg bg-pink-500 text-white font-medium";
+                        el.className = "px-3 py-1.5 rounded-lg bg-pink-300 text-white font-medium";
                     } else {
-                        el.className = "px-3 py-1.5 rounded-lg bg-pink-100 text-pink-700 hover:bg-pink-200 font-medium";
+                        el.className = "px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium";
                     }
                 }
             });
@@ -738,7 +929,6 @@
         }
 
         function renderAdminDashboard() {
-            // Update Stat Counters
             const total = requestsData.length;
             const pending = requestsData.filter(r => r.verifyStatus === 'รอการตรวจสอบ').length;
             const approved = requestsData.filter(r => r.verifyStatus === 'ผ่านการยืนยัน').length;
@@ -765,7 +955,7 @@
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="text-center py-8 text-gray-400">
+                        <td colspan="8" class="text-center py-8 text-gray-400">
                             ไม่พบรายการข้อมูลคำขอตัวแทน
                         </td>
                     </tr>
@@ -779,34 +969,35 @@
                 if (req.verifyStatus === 'ไม่ผ่านการยืนยัน') verifyBadgeClass = 'badge-rejected';
 
                 let rankBadgeClass = req.rankStatus === 'ปรับยศเรียบร้อยแล้ว' ? 'badge-rank-done' : 'badge-rank-pending';
+                
+                let levelBadgeClass = 'level-badge-basic';
+                if (req.targetLevel === 'Premium Agent') levelBadgeClass = 'level-badge-premium';
+                if (req.targetLevel === 'VIP Partner') levelBadgeClass = 'level-badge-vip';
 
                 return `
-                    <tr class="hover:bg-pink-50/40 transition">
-                        <td class="p-3 text-[11px] text-gray-500 whitespace-nowrap">
+                    <tr class="hover:bg-pink-50/20 transition">
+                        <td class="p-3 text-[11px] text-gray-400 whitespace-nowrap">
                             <div>${req.timestamp}</div>
-                            <span class="text-[9px] text-pink-400 font-mono">${req.id}</span>
+                            <span class="text-[9px] text-pink-300 font-mono">${req.id}</span>
                         </td>
-                        <td class="p-3 font-semibold text-pink-700 font-fredoka">${escapeHtml(req.username)}</td>
-                        <td class="p-3 max-w-xs truncate">${escapeHtml(req.contact)}</td>
+                        <td class="p-3 font-semibold text-pink-400 font-fredoka">${escapeHtml(req.username)}</td>
+                        <td class="p-3 max-w-xs truncate text-gray-600">${escapeHtml(req.contact)}</td>
+                        <td class="p-3"><span class="badge ${levelBadgeClass}">${req.targetLevel || 'Basic Agent'}</span></td>
                         <td class="p-3">
                             ${req.image ? `
-                                <button onclick="openImageModal('${req.image}')" class="px-2.5 py-1 bg-pink-50 hover:bg-pink-100 text-pink-600 rounded-lg text-[11px] border border-pink-200 transition">
-                                    📷 ดูรูปถ่าย
+                                <button onclick="openImageModal('${req.image}')" class="px-2 py-1 bg-pink-50 hover:bg-pink-100 text-pink-400 rounded-lg text-[11px] border border-pink-100 transition">
+                                    📷 รูปถ่าย
                                 </button>
                             ` : '<span class="text-gray-300">-</span>'}
                         </td>
-                        <td class="p-3">
-                            <span class="badge ${verifyBadgeClass}">${req.verifyStatus}</span>
-                        </td>
-                        <td class="p-3">
-                            <span class="badge ${rankBadgeClass}">${req.rankStatus}</span>
-                        </td>
+                        <td class="p-3"><span class="badge ${verifyBadgeClass}">${req.verifyStatus}</span></td>
+                        <td class="p-3"><span class="badge ${rankBadgeClass}">${req.rankStatus}</span></td>
                         <td class="p-3 text-center whitespace-nowrap">
                             <div class="flex items-center justify-center gap-1.5">
-                                <button onclick="openAdminEditModal('${req.id}')" class="px-2.5 py-1 bg-pink-500 hover:bg-pink-600 text-white rounded-lg font-medium text-[11px] shadow-sm transition">
+                                <button onclick="openAdminEditModal('${req.id}')" class="px-2.5 py-1 bg-pink-300 hover:bg-pink-400 text-white rounded-lg font-medium text-[11px] shadow-sm transition">
                                     ✏️ จัดการ
                                 </button>
-                                <button onclick="deleteRequest('${req.id}')" class="px-2 py-1 bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-600 rounded-lg text-[11px] transition">
+                                <button onclick="deleteRequest('${req.id}')" class="px-2 py-1 bg-gray-50 hover:bg-rose-50 text-gray-400 hover:text-rose-500 rounded-lg text-[11px] transition">
                                     🗑️
                                 </button>
                             </div>
@@ -816,7 +1007,6 @@
             }).join('');
         }
 
-        // Admin Edit Request Status & Details
         function openAdminEditModal(reqId) {
             const req = requestsData.find(r => r.id === reqId);
             if (!req) return;
@@ -824,6 +1014,7 @@
             document.getElementById('edit-req-id').value = req.id;
             document.getElementById('edit-username').value = req.username;
             document.getElementById('edit-contact').value = req.contact;
+            document.getElementById('edit-target-level').value = req.targetLevel || 'Basic Agent';
             document.getElementById('edit-verify-status').value = req.verifyStatus;
             document.getElementById('edit-rank-status').value = req.rankStatus;
             document.getElementById('edit-reject-reason').value = req.rejectReason || "";
@@ -854,6 +1045,7 @@
 
             const newUsername = document.getElementById('edit-username').value.trim();
             const newContact = document.getElementById('edit-contact').value.trim();
+            const newLevel = document.getElementById('edit-target-level').value;
             const newVerify = document.getElementById('edit-verify-status').value;
             const newRank = document.getElementById('edit-rank-status').value;
             const rejectReason = document.getElementById('edit-reject-reason').value.trim();
@@ -865,6 +1057,7 @@
 
             requestsData[reqIndex].username = newUsername;
             requestsData[reqIndex].contact = newContact;
+            requestsData[reqIndex].targetLevel = newLevel;
             requestsData[reqIndex].verifyStatus = newVerify;
             requestsData[reqIndex].rankStatus = newRank;
             requestsData[reqIndex].rejectReason = newVerify === 'ไม่ผ่านการยืนยัน' ? rejectReason : '';
@@ -872,11 +1065,16 @@
             saveDataToStorage();
             closeModal('modal-edit-status');
 
+            const nowStr = new Date().toLocaleTimeString('th-TH');
+            systemLogs.unshift({
+                time: nowStr,
+                text: `อัปเดตสถานะ ${newUsername}: ยืนยัน [${newVerify}] / ยศ [${newLevel}] (${newRank})`
+            });
+
             showToast(`อัปเดตข้อมูลยูสเซอร์ ${newUsername} เรียบร้อยแล้ว`, 'success');
 
-            // Trigger Notification to Agent logic simulation
             if (prevRankStatus !== newRank && newRank === 'ปรับยศเรียบร้อยแล้ว') {
-                showToast(`🔔 [แจ้งเตือนลูกค้า] ยูสเซอร์ ${newUsername} ได้รับการปรับยศเรียบร้อยแล้ว!`, 'info');
+                showToast(`🔔 [แจ้งเตือนลูกค้า] ยูสเซอร์ ${newUsername} ได้รับการปรับยศเป็น ${newLevel} เรียบร้อยแล้ว!`, 'info');
             } else if (prevVerifyStatus !== newVerify) {
                 showToast(`🔔 [แจ้งเตือนลูกค้า] ผลการยืนยันยูสเซอร์ ${newUsername} มีการอัปเดต (${newVerify})`, 'info');
             }
@@ -893,6 +1091,17 @@
                 renderAgentStatusList();
                 showToast('ลบรายการเรียบร้อยแล้ว', 'info');
             }
+        }
+
+        function exportDataJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(requestsData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `agent_requests_export_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('ส่งออกข้อมูลสำเร็จแล้ว', 'success');
         }
 
         // --- COMMON UTILS & MODAL CONTROLS ---
@@ -915,12 +1124,12 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
 
-            let bgClass = 'bg-white border-pink-300 text-pink-700';
-            if (type === 'success') bgClass = 'bg-emerald-50 border-emerald-300 text-emerald-800';
-            if (type === 'error') bgClass = 'bg-rose-50 border-rose-300 text-rose-800';
-            if (type === 'info') bgClass = 'bg-purple-50 border-purple-300 text-purple-800';
+            let bgClass = 'bg-white border-pink-200 text-pink-600';
+            if (type === 'success') bgClass = 'bg-emerald-50/90 border-emerald-200 text-emerald-800';
+            if (type === 'error') bgClass = 'bg-rose-50/90 border-rose-200 text-rose-800';
+            if (type === 'info') bgClass = 'bg-purple-50/90 border-purple-200 text-purple-800';
 
-            toast.className = `p-3.5 rounded-2xl border shadow-lg text-xs font-medium transition-all transform duration-300 pointer-events-auto flex items-center justify-between ${bgClass}`;
+            toast.className = `p-3 rounded-2xl border shadow-md text-xs font-medium transition-all transform duration-300 pointer-events-auto flex items-center justify-between ${bgClass}`;
             toast.innerHTML = `
                 <span>${escapeHtml(message)}</span>
                 <button onclick="this.parentElement.remove()" class="ml-2 opacity-50 hover:opacity-100">✕</button>
