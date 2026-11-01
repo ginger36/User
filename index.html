@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบยืนยันยูสเซอร์ตัวแทน - Pinkjulieland</title>
+    <title>ระบบยืนยันยูสเซอร์ตัวแทน & โน้ตสิทธิพิเศษ - Pinkjulieland</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #fff5f8;
+            --bg-main: #fff0f5;
             --paper: #ffffff;
             --text-dark: #6e4b5e;
             --text-light: #ab8698;
             --accent-pink: #f49ac2;
             --accent-pink-hover: #e885b2;
-            --soft-pink-bg: #fff8fa;
+            --tape-pink: #ffc4d6;
+            --tape-yellow: #fff3a7;
+            --tape-mint: #c1f0e6;
+            --tape-purple: #e2cffc;
         }
         body {
             background-color: var(--bg-main);
@@ -27,14 +30,43 @@
         }
         .font-fredoka { font-family: 'Fredoka', sans-serif; }
         
-        /* สไตล์กล่องสี่เหลี่ยมเซ็ตการ์ดแบบสะอาดตา */
         .grid-box {
             background-color: var(--paper);
-            border-radius: 16px;
+            border-radius: 20px;
             border: 2px solid #ffdeeb;
-            box-shadow: 0 4px 20px rgba(232, 175, 201, 0.12);
+            box-shadow: 0 6px 20px rgba(232, 175, 201, 0.15);
+            position: relative;
         }
-        
+
+        /* Washi Tape Stylings */
+        .washi-tape {
+            position: absolute;
+            height: 26px;
+            width: 100px;
+            z-index: 20;
+            opacity: 0.85;
+            mix-blend-mode: multiply;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .tape-1 {
+            top: -12px;
+            left: 24px;
+            transform: rotate(-4deg);
+            clip-path: polygon(3% 0%, 97% 2%, 100% 95%, 0% 98%);
+        }
+        .tape-2 {
+            top: -12px;
+            right: 24px;
+            transform: rotate(3deg);
+            clip-path: polygon(0% 2%, 96% 0%, 98% 98%, 2% 96%);
+        }
+        .tape-center {
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            clip-path: polygon(2% 1%, 98% 0%, 96% 99%, 1% 97%);
+        }
+
         .btn-pink {
             background-color: var(--accent-pink);
             color: white;
@@ -82,29 +114,37 @@
             color: #d85c93;
             background-color: rgba(255, 255, 255, 0.5);
         }
+
+        .memo-paper {
+            background-color: #fffdfa;
+            background-image: radial-gradient(#f4c2d7 0.75px, transparent 0.75px);
+            background-size: 12px 12px;
+        }
     </style>
 </head>
 <body class="p-3 md:p-6 custom-scrollbar">
 
-    <!-- Container หลักจัดระเบียบเป็นเซ็ตกล่องสี่เหลี่ยม -->
+    <!-- Container หลัก -->
     <div class="max-w-6xl mx-auto space-y-6">
         
-        <!-- Header / Navigation Bar (กล่องเซ็ตหัวข้อ) -->
+        <!-- Header / Navigation Bar (กล่องเซ็ตหัวข้อแปะเทปพาสเทล) -->
         <header class="grid-box p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="washi-tape tape-1" style="background-color: var(--tape-pink);"></div>
+            <div class="washi-tape tape-2" style="background-color: var(--tape-yellow);"></div>
+            
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center text-2xl shadow-inner">
-                    🌸
+                <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-2xl shadow-inner">
+                    🎀
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-bold font-fredoka text-pink-500 tracking-wide">Pinkjulieland Portal</h1>
-                    <p class="text-xs text-pink-400">ระบบยืนยันตัวตน ตรวจสอบยศ และจัดการสิทธิ์ตัวแทนร้านค้าแบบสัดส่วน</p>
+                    <h1 class="text-xl md:text-2xl font-bold font-fredoka text-pink-500 tracking-wide">Pinkjulieland Agent Hub</h1>
+                    <p class="text-xs text-pink-400">ระบบยืนยันตัวตน ตรวจสอบยศ และศูนย์จัดการสิทธิประโยชน์ตัวแทน</p>
                 </div>
             </div>
 
-            <!-- Switcher & Counter Set -->
             <div class="flex flex-wrap items-center gap-3">
                 <div class="bg-pink-50 border border-pink-100 px-4 py-2 rounded-xl text-xs font-medium text-pink-500 flex items-center gap-1.5 shadow-sm">
-                    <span>✨ คำขอทั้งหมด:</span>
+                    <span>✨ คำขอในระบบ:</span>
                     <span id="total-stats-counter" class="font-bold text-pink-500 font-fredoka text-base">0</span>
                     <span>รายการ</span>
                 </div>
@@ -131,26 +171,27 @@
             <!-- Sub-Navigation Tab Set -->
             <div class="grid-box p-1.5 flex gap-2">
                 <button id="agent-tab-verify" onclick="switchAgentSubTab('verify')" class="flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-active">
-                    📝 แบบฟอร์มยืนยันตัวแทน
+                    📝 ยืนยันยูสเซอร์ & ติดตามสถานะ
                 </button>
                 <button id="agent-tab-benefits" onclick="switchAgentSubTab('benefits')" class="flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-inactive">
-                    👑 ตรวจสอบระดับยศ & สิทธิประโยชน์
+                    📌 โน้ตสิทธิประโยชน์ตัวแทน (Sticky Notes)
                 </button>
-                <button id="agent-tab-logs" onclick="switchAgentSubTab('logs')" class="flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-inactive">
-                    🔔 ประวัติการแจ้งเตือนสิทธิ์
+                <button id="agent-tab-api" onclick="switchAgentSubTab('api')" class="flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-inactive">
+                    🔗 ตั้งค่าการเชื่อมต่อ API Webhook
                 </button>
             </div>
 
-            <!-- SUB-TAB 1: Form & Status Tracking Grid Set -->
+            <!-- SUB-TAB 1: Form & Status Tracking -->
             <div id="agent-subtab-verify-content" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <!-- กล่องซ้าย: ฟอร์มกรอกข้อมูล -->
                 <div class="grid-box p-5 md:p-6 space-y-4">
+                    <div class="washi-tape tape-1" style="background-color: var(--tape-mint);"></div>
                     <div>
                         <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
-                            <span>📝</span> ยืนยันยูสเซอร์ใหม่
+                            <span>📝</span> ส่งข้อมูลยืนยันยูสเซอร์
                         </h2>
-                        <p class="text-xs text-gray-400 mt-0.5">กรอกข้อมูลให้ครบถ้วนเพื่อส่งให้แอดมินตรวจสอบ</p>
+                        <p class="text-xs text-gray-400 mt-0.5">กรอกข้อมูลเพื่อส่งให้แอดมินตรวจสอบและปรับยศ</p>
                     </div>
 
                     <form id="verify-form" onsubmit="handleAgentSubmit(event)" class="space-y-4">
@@ -160,16 +201,16 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-pink-500 mb-1">ช่องทางการติดต่อ (Line / Tel / FB) <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-semibold text-pink-500 mb-1">ช่องทางการติดต่อ <span class="text-rose-400">*</span></label>
                             <input type="text" id="input-contact" required placeholder="เช่น Line ID: pinky_shop" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
                         </div>
 
                         <div>
                             <label class="block text-xs font-semibold text-pink-500 mb-1">ระดับยศที่ต้องการสมัคร <span class="text-rose-400">*</span></label>
                             <select id="input-target-level" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
-                                <option value="Basic Agent">Basic Agent (ระดับเริ่มต้น)</option>
-                                <option value="Premium Agent">Premium Agent (ตัวแทนระดับกลาง)</option>
-                                <option value="VIP Partner">VIP Partner (ตัวแทนระดับ VIP)</option>
+                                <option value="Basic Agent">Basic Agent (ตัวแทนเริ่มต้น)</option>
+                                <option value="Premium Agent">Premium Agent (ตัวแทนมีเครดิต)</option>
+                                <option value="VIP Partner">VIP Partner (ตัวแทนย่อดยอดเยี่ยม 250+/เดือน)</option>
                             </select>
                         </div>
 
@@ -179,8 +220,8 @@
                                 <input type="file" id="input-image" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
                                 <div id="upload-placeholder" class="space-y-1">
                                     <div class="text-2xl">📸</div>
-                                    <p class="text-xs text-pink-400 font-medium">คลิกเลือกรูปภาพหน้าร้าน</p>
-                                    <p class="text-[10px] text-gray-400">บีบอัดภาพอัตโนมัติ</p>
+                                    <p class="text-xs text-pink-400 font-medium">คลิกเพื่อเลือกรูปภาพหน้าร้าน</p>
+                                    <p class="text-[10px] text-gray-400">ระบบบีบอัดภาพให้อัตโนมัติ</p>
                                 </div>
                                 <div id="upload-preview-wrapper" class="hidden relative">
                                     <img id="upload-preview" src="" class="max-h-32 mx-auto rounded-lg shadow-sm border border-pink-100 object-cover">
@@ -195,8 +236,9 @@
                     </form>
                 </div>
 
-                <!-- กล่องขวา: ตรวจสอบสถานะและรายการยื่น -->
+                <!-- กล่องขวา: ตรวจสอบสถานะคำขอ -->
                 <div class="md:col-span-2 grid-box p-5 md:p-6 flex flex-col space-y-4">
+                    <div class="washi-tape tape-2" style="background-color: var(--tape-purple);"></div>
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div>
                             <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
@@ -226,53 +268,117 @@
 
             </div>
 
-            <!-- SUB-TAB 2: Benefits Grid Box -->
-            <div id="agent-subtab-benefits-content" class="grid-box p-6 space-y-4 hidden">
-                <div>
-                    <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
-                        <span>👑</span> ตารางระดับยศตัวแทน & สิทธิประโยชน์
-                    </h2>
-                    <p class="text-xs text-gray-400 mt-0.5">สิทธิพิเศษที่คุณจะได้รับเมื่อผ่านการปรับยศบนเว็บไซต์กดแอปพรีเมียม</p>
+            <!-- SUB-TAB 2: Cute Sticky Notes for Agent Rules & Perks (โน้ตเทปพาสเทลน่ารัก) -->
+            <div id="agent-subtab-benefits-content" class="space-y-6 hidden">
+                
+                <div class="text-center space-y-1">
+                    <h2 class="text-lg font-bold text-pink-500 font-fredoka">🎀 Agent Privilege Memo & Sticky Notes 🎀</h2>
+                    <p class="text-xs text-gray-400">โน้ตแจ้งเงื่อนไข สิทธิพิเศษเว็บเก็บเครดิต และกฎการใช้เรตราคาส่งตัวแทน</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="grid-box p-4 border border-sky-100 bg-sky-50/20 space-y-2">
-                        <span class="badge level-badge-basic">Basic Agent</span>
-                        <h3 class="text-sm font-bold text-gray-700">ระดับเริ่มต้น</h3>
-                        <ul class="text-xs space-y-1.5 text-gray-500">
-                            <li>• ส่วนลดสติ๊กเกอร์/แอป 5%</li>
-                            <li>• กดงานระบบปกติ</li>
-                        </ul>
+                <!-- Sticky Notes Grid Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Sticky Note 1: ตัวแทนไม่มียอด -->
+                    <div class="memo-paper p-5 rounded-2xl border-2 border-rose-200 shadow-md relative transform -rotate-1 hover:rotate-0 transition duration-300 space-y-3">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-pink);"></div>
+                        <div class="flex items-center justify-between border-b border-rose-100 pb-2">
+                            <span class="text-xs font-bold text-rose-500 flex items-center gap-1">📌 ตัวแทนที่ยังไม่มียอด</span>
+                            <span class="text-[10px] bg-rose-100 text-rose-600 px-2 py-0.5 rounded-full font-bold">เงื่อนไขสำคัญ</span>
+                        </div>
+                        
+                        <div class="rounded-xl overflow-hidden shadow-sm border border-rose-100">
+                            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&auto=format&fit=crop&q=60" class="w-full h-28 object-cover">
+                        </div>
+
+                        <div class="text-xs text-gray-600 space-y-2 leading-relaxed">
+                            <p class="font-medium text-rose-600">🛍️ ซื้อสินค้าในราคาส่งได้</p>
+                            <p class="bg-rose-50/80 p-2.5 rounded-xl border border-rose-100 text-[11px] text-gray-600">
+                                <b class="text-rose-500">ข้อห้าม:</b> ต้องขายต่อให้ลูกค้า หรือ ขายต่อให้ตัวแทนอีกทีเท่านั้น <span class="text-rose-500 font-bold">ไม่อนุญาตให้ซื้อใช้เอง!</span>
+                            </p>
+                            <div class="bg-rose-100/70 text-rose-700 p-2 rounded-xl text-center font-bold text-[11px]">
+                                ⚠️ ฝ่าฝืนใช้เอง ปรับ 500 บาท
+                            </div>
+                        </div>
                     </div>
-                    <div class="grid-box p-4 border border-purple-100 bg-purple-50/20 space-y-2">
-                        <span class="badge level-badge-premium">Premium Agent</span>
-                        <h3 class="text-sm font-bold text-purple-700">ระดับกลาง (ยอดนิยม)</h3>
-                        <ul class="text-xs space-y-1.5 text-purple-600">
-                            <li>• ส่วนลดราคาส่ง 15%</li>
-                            <li>• อนุมัติคิวไวขึ้น 2 เท่า</li>
-                        </ul>
+
+                    <!-- Sticky Note 2: ตัวแทนมียอดไม่ถึง 250 บาท/เดือน -->
+                    <div class="memo-paper p-5 rounded-2xl border-2 border-amber-200 shadow-md relative transform rotate-1 hover:rotate-0 transition duration-300 space-y-3">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-yellow);"></div>
+                        <div class="flex items-center justify-between border-b border-amber-100 pb-2">
+                            <span class="text-xs font-bold text-amber-600 flex items-center gap-1">🎟️ ยอดไม่ถึง 250.- / เดือน</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-bold">เว็บเก็บเครดิต</span>
+                        </div>
+                        
+                        <div class="rounded-xl overflow-hidden shadow-sm border border-amber-100">
+                            <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?w=400&auto=format&fit=crop&q=60" class="w-full h-28 object-cover">
+                        </div>
+
+                        <div class="text-xs text-gray-600 space-y-2 leading-relaxed">
+                            <p class="font-medium text-amber-700">🌐 ใช้งานระบบเว็บเก็บเครดิตได้</p>
+                            <ul class="space-y-1.5 text-[11px] text-gray-600">
+                                <li class="flex items-center gap-1"><span>✨</span> สามารถปรับแต่งเว็บเก็บเครดิตได้เอง</li>
+                                <li class="flex items-center gap-1"><span>🎁</span> สมัครใช้ฟรีเดือนแรก 1 เดือน!</li>
+                                <li class="flex items-center gap-1"><span>ต</span> ต่ออายุเพียง 10 บาท/เดือน เท่านั้น</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="grid-box p-4 border border-amber-100 bg-amber-50/20 space-y-2">
-                        <span class="badge level-badge-vip">VIP Partner</span>
-                        <h3 class="text-sm font-bold text-amber-700">ระดับ VIP สูงสุด</h3>
-                        <ul class="text-xs space-y-1.5 text-amber-800">
-                            <li>• ส่วนลดราคาส่ง 25%</li>
-                            <li>• ช่องทางด่วน VIP และสร้างทีมย่อยได้</li>
-                        </ul>
+
+                    <!-- Sticky Note 3: ตัวแทนมียอดเกิน 250 บาท/เดือน -->
+                    <div class="memo-paper p-5 rounded-2xl border-2 border-emerald-200 shadow-md relative transform -rotate-1 hover:rotate-0 transition duration-300 space-y-3">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-mint);"></div>
+                        <div class="flex items-center justify-between border-b border-emerald-100 pb-2">
+                            <span class="text-xs font-bold text-emerald-600 flex items-center gap-1">👑 ยอดเกิน 250.- / เดือน</span>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold">VIP สิทธิ์ครบ</span>
+                        </div>
+                        
+                        <div class="rounded-xl overflow-hidden shadow-sm border border-emerald-100">
+                            <img src="https://images.unsplash.com/photo-1556742049-0a67d577c4d3?w=400&auto=format&fit=crop&q=60" class="w-full h-28 object-cover">
+                        </div>
+
+                        <div class="text-xs text-gray-600 space-y-2 leading-relaxed">
+                            <p class="font-medium text-emerald-700">🎁 สิทธิพิเศษปลดล็อกครบถ้วน!</p>
+                            <ul class="space-y-1 text-[11px] text-gray-600">
+                                <li>✅ ใช้เรตราคาส่งตัวแทนเพื่อซื้อใช้เองได้</li>
+                                <li>✅ ใช้เว็บเก็บเครดิตฟรีทันที</li>
+                                <li>✅ เข้าถึงระบบเว็บติดตามพัสดุ (เร็วๆ นี้)</li>
+                            </ul>
+                            <div class="bg-emerald-50 p-2 rounded-xl text-center text-[10px] text-emerald-600 border border-emerald-100 font-medium">
+                                ✨ ระบบตัวติดตามกำลังจะเปิดใช้งานเร็วๆ นี้
+                            </div>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- SUB-TAB 3: Logs Grid Box -->
-            <div id="agent-subtab-logs-content" class="grid-box p-6 space-y-4 hidden">
+            <!-- SUB-TAB 3: Future API Webhook Integrations (ระบบเชื่อมต่อ API ในอนาคต) -->
+            <div id="agent-subtab-api-content" class="grid-box p-6 space-y-5 hidden">
+                <div class="washi-tape tape-1" style="background-color: var(--tape-purple);"></div>
                 <div>
                     <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
-                        <span>🔔</span> ประวัติบันทึกการทำงานระบบ
+                        <span>🔗</span> ระบบส่งออกและเชื่อมต่อ API Webhook กับเว็บกดแอป & ระบบติดตาม
                     </h2>
-                    <p class="text-xs text-gray-400 mt-0.5">ลำดับเหตุการณ์การยืนยันและการเปลี่ยนยศล่าสุด</p>
+                    <p class="text-xs text-gray-400 mt-0.5">จำลองการเชื่อมต่อ API ไปยังระบบภายนอกเพื่ออัปเดตยศและสถานะอัตโนมัติ</p>
                 </div>
-                <div id="agent-logs-timeline" class="space-y-2 text-xs">
-                    <!-- Dynamic Logs -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl border border-pink-100 bg-pink-50/20 space-y-3 text-xs">
+                        <h3 class="font-bold text-pink-600 flex items-center gap-1">🌐 API Webhook Endpoint (ระบบกดแอป)</h3>
+                        <p class="text-gray-500">ส่ง Webhook ทันทีเมื่อแอนมินอัปเดตสถานะ "ผ่านการยืนยัน" และ "ปรับยศแล้ว"</p>
+                        <input type="text" readonly value="https://api.pinkjulieland.com/v1/agent/sync-rank" class="w-full px-3 py-2 rounded-lg bg-white border border-pink-100 text-pink-400 font-mono text-[11px]">
+                        <button onclick="testApiWebhook()" class="px-3 py-1.5 bg-pink-400 text-white rounded-lg text-xs font-semibold hover:bg-pink-500 transition">
+                            ⚡ ทดสอบยิง API Webhook
+                        </button>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-pink-100 bg-pink-50/20 space-y-3 text-xs">
+                        <h3 class="font-bold text-pink-600 flex items-center gap-1">📦 Webhook ระบบตัวติดตามพัสดุ (Coming Soon)</h3>
+                        <p class="text-gray-500">ซิงก์ข้อมูลยูสเซอร์ที่มียอดเกิน 250 บาท เข้าใช้ระบบติดตามอัตโนมัติ</p>
+                        <input type="text" readonly value="https://api.pinkjulieland.com/v1/tracking/auto-auth" class="w-full px-3 py-2 rounded-lg bg-white border border-pink-100 text-pink-400 font-mono text-[11px]">
+                        <span class="inline-block px-2.5 py-1 bg-purple-100 text-purple-700 rounded-md text-[10px] font-bold">พร้อมเชื่อมต่อ API อนาคต</span>
+                    </div>
                 </div>
             </div>
 
@@ -285,6 +391,7 @@
             
             <!-- Lock Screen Box -->
             <div id="admin-auth-card" class="grid-box p-8 max-w-sm mx-auto text-center space-y-4 my-10">
+                <div class="wasi-tape tape-center" style="background-color: var(--tape-yellow);"></div>
                 <div class="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center text-2xl mx-auto text-pink-400 shadow-inner">
                     🔒
                 </div>
@@ -323,6 +430,7 @@
 
                 <!-- Admin Action & Table Box -->
                 <div class="grid-box p-5 md:p-6 space-y-4">
+                    <div class="washi-tape tape-1" style="background-color: var(--tape-pink);"></div>
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
@@ -414,9 +522,9 @@
                 <div>
                     <label class="block font-semibold text-gray-600 mb-1">กำหนดระดับยศตัวแทน (Level)</label>
                     <select id="edit-target-level" class="w-full px-3 py-2 rounded-xl border border-pink-100 focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
-                        <option value="Basic Agent">Basic Agent (ระดับเริ่มต้น)</option>
-                        <option value="Premium Agent">Premium Agent (ตัวแทนระดับกลาง)</option>
-                        <option value="VIP Partner">VIP Partner (ตัวแทนระดับ VIP)</option>
+                        <option value="Basic Agent">Basic Agent (ตัวแทนเริ่มต้น)</option>
+                        <option value="Premium Agent">Premium Agent (ตัวแทนมีเครดิต)</option>
+                        <option value="VIP Partner">VIP Partner (ตัวแทนย่อดยอดเยี่ยม 250+/เดือน)</option>
                     </select>
                 </div>
 
@@ -491,7 +599,6 @@
         ];
 
         let requestsData = [];
-        let systemLogs = [];
         let currentView = 'agent';
         let currentAgentSubTab = 'verify';
         let isAdminLoggedIn = false;
@@ -512,10 +619,6 @@
                 requestsData = INITIAL_MOCK_DATA;
                 saveDataToStorage();
             }
-            systemLogs = [
-                { time: "11:05", text: "อัปเดตสถานะยูสเซอร์ pastel_store99 เป็น 'ไม่ผ่านการยืนยัน'" },
-                { time: "09:20", text: "ปรับยศยูสเซอร์ julie_shop01 เป็น VIP Partner เรียบร้อยแล้ว" }
-            ];
         }
 
         function saveDataToStorage() {
@@ -553,14 +656,14 @@
             currentAgentSubTab = tab;
             const tVerify = document.getElementById('agent-tab-verify');
             const tBenefits = document.getElementById('agent-tab-benefits');
-            const tLogs = document.getElementById('agent-tab-logs');
+            const tApi = document.getElementById('agent-tab-api');
 
             const cVerify = document.getElementById('agent-subtab-verify-content');
             const cBenefits = document.getElementById('agent-subtab-benefits-content');
-            const cLogs = document.getElementById('agent-subtab-logs-content');
+            const cApi = document.getElementById('agent-subtab-api-content');
 
-            [tVerify, tBenefits, tLogs].forEach(t => t.className = "flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-inactive");
-            [cVerify, cBenefits, cLogs].forEach(c => c.classList.add('hidden'));
+            [tVerify, tBenefits, tApi].forEach(t => t.className = "flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-inactive");
+            [cVerify, cBenefits, cApi].forEach(c => c.classList.add('hidden'));
 
             if (tab === 'verify') {
                 tVerify.className = "flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-active";
@@ -568,10 +671,9 @@
             } else if (tab === 'benefits') {
                 tBenefits.className = "flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-active";
                 cBenefits.classList.remove('hidden');
-            } else if (tab === 'logs') {
-                tLogs.className = "flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-active";
-                cLogs.classList.remove('hidden');
-                renderLogsTimeline();
+            } else if (tab === 'api') {
+                tApi.className = "flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-active";
+                cApi.classList.remove('hidden');
             }
         }
 
@@ -634,7 +736,6 @@
 
             requestsData.unshift(newRequest);
             saveDataToStorage();
-            systemLogs.unshift({ time: timeStr, text: `ส่งคำขอโดยยูสเซอร์ ${username} (${targetLevel})` });
 
             document.getElementById('verify-form').reset();
             clearImageSelect();
@@ -703,14 +804,11 @@
             }).join('');
         }
 
-        function renderLogsTimeline() {
-            const container = document.getElementById('agent-logs-timeline');
-            container.innerHTML = systemLogs.map(l => `
-                <div class="grid-box p-2.5 bg-pink-50/20 flex justify-between items-center text-xs">
-                    <span class="text-gray-600">${escapeHtml(l.text)}</span>
-                    <span class="text-[10px] text-gray-400">${l.time}</span>
-                </div>
-            `).join('');
+        function testApiWebhook() {
+            showToast('⚡ กำลังส่ง API Webhook ไปยังระบบกดแอปและติดตามพัสดุ...', 'info');
+            setTimeout(() => {
+                showToast('✅ เชื่อมต่อ API Webhook สำเร็จ! ซิงก์ข้อมูลสิทธิ์แล้ว', 'success');
+            }, 1000);
         }
 
         function handleAdminLogin() {
