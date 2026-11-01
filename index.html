@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบยืนยันยูสเซอร์ตัวแทน & โน้ตสิทธิพิเศษ - Pinkjulieland</title>
+    <title>ระบบยืนยันยูสเซอร์ตัวแทน - Pinkjulieland</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,34 +38,17 @@
             position: relative;
         }
 
-        /* Washi Tape Stylings */
         .washi-tape {
             position: absolute;
-            height: 26px;
-            width: 100px;
+            height: 24px;
+            width: 90px;
             z-index: 20;
             opacity: 0.85;
             mix-blend-mode: multiply;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .tape-1 {
-            top: -12px;
-            left: 24px;
-            transform: rotate(-4deg);
-            clip-path: polygon(3% 0%, 97% 2%, 100% 95%, 0% 98%);
-        }
-        .tape-2 {
-            top: -12px;
-            right: 24px;
-            transform: rotate(3deg);
-            clip-path: polygon(0% 2%, 96% 0%, 98% 98%, 2% 96%);
-        }
-        .tape-center {
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-1deg);
-            clip-path: polygon(2% 1%, 98% 0%, 96% 99%, 1% 97%);
-        }
+        .tape-1 { top: -11px; left: 24px; transform: rotate(-3deg); clip-path: polygon(3% 0%, 97% 2%, 100% 95%, 0% 98%); }
+        .tape-2 { top: -11px; right: 24px; transform: rotate(3deg); clip-path: polygon(0% 2%, 96% 0%, 98% 98%, 2% 96%); }
+        .tape-center { top: -11px; left: 50%; transform: translateX(-50%) rotate(-1deg); clip-path: polygon(2% 1%, 98% 0%, 96% 99%, 1% 97%); }
 
         .btn-pink {
             background-color: var(--accent-pink);
@@ -107,13 +90,8 @@
             box-shadow: 0 2px 8px rgba(232, 175, 201, 0.2);
             font-weight: 600;
         }
-        .tab-btn-inactive {
-            color: #b3889c;
-        }
-        .tab-btn-inactive:hover {
-            color: #d85c93;
-            background-color: rgba(255, 255, 255, 0.5);
-        }
+        .tab-btn-inactive { color: #b3889c; }
+        .tab-btn-inactive:hover { color: #d85c93; background-color: rgba(255, 255, 255, 0.5); }
 
         .memo-paper {
             background-color: #fffdfa;
@@ -124,10 +102,9 @@
 </head>
 <body class="p-3 md:p-6 custom-scrollbar">
 
-    <!-- Container หลัก -->
     <div class="max-w-6xl mx-auto space-y-6">
         
-        <!-- Header / Navigation Bar (กล่องเซ็ตหัวข้อแปะเทปพาสเทล) -->
+        <!-- Header Section -->
         <header class="grid-box p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="washi-tape tape-1" style="background-color: var(--tape-pink);"></div>
             <div class="washi-tape tape-2" style="background-color: var(--tape-yellow);"></div>
@@ -160,15 +137,11 @@
             </div>
         </header>
 
-        <!-- Notification Toast Container -->
         <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
 
-        <!-- ========================================== -->
-        <!-- VIEW: AGENT SYSTEM (ระบบฝั่งตัวแทน) -->
-        <!-- ========================================== -->
+        <!-- ================= VIEW: AGENT ================= -->
         <main id="view-agent" class="space-y-6">
             
-            <!-- Sub-Navigation Tab Set -->
             <div class="grid-box p-1.5 flex gap-2">
                 <button id="agent-tab-verify" onclick="switchAgentSubTab('verify')" class="flex-1 py-2 rounded-xl text-xs font-semibold transition tab-btn-active">
                     📝 ยืนยันยูสเซอร์ & ติดตามสถานะ
@@ -181,94 +154,130 @@
                 </button>
             </div>
 
-            <!-- SUB-TAB 1: Form & Status Tracking -->
-            <div id="agent-subtab-verify-content" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Sub-Tab 1: Verify & Dashboard Status -->
+            <div id="agent-subtab-verify-content" class="space-y-6">
                 
-                <!-- กล่องซ้าย: ฟอร์มกรอกข้อมูล -->
-                <div class="grid-box p-5 md:p-6 space-y-4">
-                    <div class="washi-tape tape-1" style="background-color: var(--tape-mint);"></div>
-                    <div>
-                        <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
-                            <span>📝</span> ส่งข้อมูลยืนยันยูสเซอร์
-                        </h2>
-                        <p class="text-xs text-gray-400 mt-0.5">กรอกข้อมูลเพื่อส่งให้แอดมินตรวจสอบและปรับยศ</p>
+                <!-- 🌟 สถิติจำนวนสถานะแบบ Dashboard ก้อนสี่เหลี่ยมสวยงามตามที่ขอ -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid-box p-4 text-center border-l-4 border-l-amber-300 bg-amber-50/20">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-yellow);"></div>
+                        <p class="text-xs text-amber-700 font-medium mt-1">⏳ กำลังรอการตรวจสอบ</p>
+                        <p id="dash-pending" class="text-2xl font-bold font-fredoka text-amber-600 mt-1">0</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">รอแอดมินรับเรื่องตรวจ</p>
                     </div>
 
-                    <form id="verify-form" onsubmit="handleAgentSubmit(event)" class="space-y-4">
+                    <div class="grid-box p-4 text-center border-l-4 border-l-emerald-300 bg-emerald-50/20">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-mint);"></div>
+                        <p class="text-xs text-emerald-700 font-medium mt-1">✅ ผ่านการยืนยันแล้ว</p>
+                        <p id="dash-approved" class="text-2xl font-bold font-fredoka text-emerald-600 mt-1">0</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">พร้อมใช้งานเรตราคาส่ง</p>
+                    </div>
+
+                    <div class="grid-box p-4 text-center border-l-4 border-l-rose-300 bg-rose-50/20">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-pink);"></div>
+                        <p class="text-xs text-rose-700 font-medium mt-1">❌ ไม่ผ่านการตรวจสอบ</p>
+                        <p id="dash-rejected" class="text-2xl font-bold font-fredoka text-rose-600 mt-1">0</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">ตรวจสอบเหตุผลแก้ไขได้</p>
+                    </div>
+
+                    <div class="grid-box p-4 text-center border-l-4 border-l-purple-300 bg-purple-50/20">
+                        <div class="washi-tape tape-center" style="background-color: var(--tape-purple);"></div>
+                        <p class="text-xs text-purple-700 font-medium mt-1">👑 ปรับยศสำเร็จแล้ว</p>
+                        <p id="dash-ranked" class="text-2xl font-bold font-fredoka text-purple-600 mt-1">0</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">ซิงก์เว็บกดแอปเรียบร้อย</p>
+                    </div>
+                </div>
+
+                <!-- ฟอร์มส่งข้อมูล และ รายการติดตามสถานะ -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- กล่องซ้าย: ฟอร์มกรอกข้อมูล -->
+                    <div class="grid-box p-5 md:p-6 space-y-4">
+                        <div class="washi-tape tape-1" style="background-color: var(--tape-mint);"></div>
                         <div>
-                            <label class="block text-xs font-semibold text-pink-500 mb-1">ชื่อยูสเซอร์ตัวแทน <span class="text-rose-400">*</span></label>
-                            <input type="text" id="input-username" required placeholder="เช่น agent_pinky01" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
+                            <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
+                                <span>📝</span> ส่งข้อมูลยืนยันยูสเซอร์
+                            </h2>
+                            <p class="text-xs text-gray-400 mt-0.5">กรอกข้อมูลเพื่อส่งให้แอดมินตรวจสอบและปรับยศ</p>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-pink-500 mb-1">ช่องทางการติดต่อ <span class="text-rose-400">*</span></label>
-                            <input type="text" id="input-contact" required placeholder="เช่น Line ID: pinky_shop" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
-                        </div>
+                        <form id="verify-form" onsubmit="handleAgentSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-pink-500 mb-1">ชื่อยูสเซอร์ตัวแทน <span class="text-rose-400">*</span></label>
+                                <input type="text" id="input-username" required placeholder="เช่น agent_pinky01" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
+                            </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-pink-500 mb-1">ระดับยศที่ต้องการสมัคร <span class="text-rose-400">*</span></label>
-                            <select id="input-target-level" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
-                                <option value="Basic Agent">Basic Agent (ตัวแทนเริ่มต้น)</option>
-                                <option value="Premium Agent">Premium Agent (ตัวแทนมีเครดิต)</option>
-                                <option value="VIP Partner">VIP Partner (ตัวแทนย่อดยอดเยี่ยม 250+/เดือน)</option>
-                            </select>
-                        </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-pink-500 mb-1">ช่องทางการติดต่อ <span class="text-rose-400">*</span></label>
+                                <input type="text" id="input-contact" required placeholder="เช่น Line ID: pinky_shop" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
+                            </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-pink-500 mb-1">รูปภาพหน้าร้านตัวแทน <span class="text-rose-400">*</span></label>
-                            <div class="border-2 border-dashed border-pink-200 rounded-xl p-4 text-center bg-pink-50/10 hover:bg-pink-50/30 transition cursor-pointer" onclick="document.getElementById('input-image').click()">
-                                <input type="file" id="input-image" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
-                                <div id="upload-placeholder" class="space-y-1">
-                                    <div class="text-2xl">📸</div>
-                                    <p class="text-xs text-pink-400 font-medium">คลิกเพื่อเลือกรูปภาพหน้าร้าน</p>
-                                    <p class="text-[10px] text-gray-400">ระบบบีบอัดภาพให้อัตโนมัติ</p>
+                            <div>
+                                <label class="block text-xs font-semibold text-pink-500 mb-1">ระดับยศที่ต้องการสมัคร <span class="text-rose-400">*</span></label>
+                                <select id="input-target-level" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-white text-gray-600">
+                                    <option value="Basic Agent">Basic Agent (ตัวแทนเริ่มต้น)</option>
+                                    <option value="Premium Agent">Premium Agent (ตัวแทนมีเครดิต)</option>
+                                    <option value="VIP Partner">VIP Partner (ตัวแทนย่อดยอดเยี่ยม 250+/เดือน)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-pink-500 mb-1">รูปภาพหน้าร้านตัวแทน <span class="text-rose-400">*</span></label>
+                                <div class="border-2 border-dashed border-pink-200 rounded-xl p-4 text-center bg-pink-50/10 hover:bg-pink-50/30 transition cursor-pointer" onclick="document.getElementById('input-image').click()">
+                                    <input type="file" id="input-image" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
+                                    <div id="upload-placeholder" class="space-y-1">
+                                        <div class="text-2xl">📸</div>
+                                        <p class="text-xs text-pink-400 font-medium">คลิกเพื่อเลือกรูปภาพหน้าร้าน</p>
+                                        <p class="text-[10px] text-gray-400">ระบบบีบอัดภาพให้อัตโนมัติ</p>
+                                    </div>
+                                    <div id="upload-preview-wrapper" class="hidden relative">
+                                        <img id="upload-preview" src="" class="max-h-32 mx-auto rounded-lg shadow-sm border border-pink-100 object-cover">
+                                        <button type="button" onclick="clearImageSelect(event)" class="absolute -top-2 -right-2 bg-rose-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs shadow hover:bg-rose-500">✕</button>
+                                    </div>
                                 </div>
-                                <div id="upload-preview-wrapper" class="hidden relative">
-                                    <img id="upload-preview" src="" class="max-h-32 mx-auto rounded-lg shadow-sm border border-pink-100 object-cover">
-                                    <button type="button" onclick="clearImageSelect(event)" class="absolute -top-2 -right-2 bg-rose-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs shadow hover:bg-rose-500">✕</button>
-                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full py-3 rounded-xl font-semibold btn-pink flex items-center justify-center gap-2 text-xs shadow-sm">
+                                <span>🚀</span> ส่งข้อมูลยืนยันตัวแทน
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- กล่องขวา: ตรวจสอบสถานะคำขอ -->
+                    <div class="md:col-span-2 grid-box p-5 md:p-6 flex flex-col space-y-4">
+                        <div class="washi-tape tape-2" style="background-color: var(--tape-purple);"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
+                                    <span>🔍</span> ติดตามสถานะคำขอของคุณ
+                                </h2>
+                                <p class="text-xs text-gray-400 mt-0.5">ค้นหาหรือคัดกรองสถานะการยืนยันและการปรับยศ</p>
+                            </div>
+                            <div class="relative w-full sm:w-56">
+                                <input type="text" id="search-agent-input" oninput="renderAgentStatusList()" placeholder="ค้นหายูสเซอร์..." class="w-full pl-8 pr-3 py-2 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
+                                <span class="absolute left-2.5 top-2.5 text-xs text-pink-300">🔎</span>
                             </div>
                         </div>
 
-                        <button type="submit" class="w-full py-3 rounded-xl font-semibold btn-pink flex items-center justify-center gap-2 text-xs shadow-sm">
-                            <span>🚀</span> ส่งข้อมูลยืนยันตัวแทน
-                        </button>
-                    </form>
-                </div>
-
-                <!-- กล่องขวา: ตรวจสอบสถานะคำขอ -->
-                <div class="md:col-span-2 grid-box p-5 md:p-6 flex flex-col space-y-4">
-                    <div class="washi-tape tape-2" style="background-color: var(--tape-purple);"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div>
-                            <h2 class="text-base font-bold text-pink-500 flex items-center gap-2">
-                                <span>🔍</span> ติดตามสถานะคำขอของคุณ
-                            </h2>
-                            <p class="text-xs text-gray-400 mt-0.5">ค้นหาหรือคัดกรองสถานะการยืนยันและการปรับยศ</p>
+                        <!-- Filter Set -->
+                        <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
+                            <button onclick="setAgentFilter('all')" id="filter-agent-all" class="px-3 py-1.5 rounded-lg bg-pink-400 text-white font-medium">ทั้งหมด</button>
+                            <button onclick="setAgentFilter('รอการตรวจสอบ')" id="filter-agent-pending" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">รอการตรวจสอบ</button>
+                            <button onclick="setAgentFilter('ผ่านการยืนยัน')" id="filter-agent-approved" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ผ่านการยืนยัน</button>
+                            <button onclick="setAgentFilter('ไม่ผ่านการยืนยัน')" id="filter-agent-rejected" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ไม่ผ่านการยืนยัน</button>
                         </div>
-                        <div class="relative w-full sm:w-56">
-                            <input type="text" id="search-agent-input" oninput="renderAgentStatusList()" placeholder="ค้นหายูสเซอร์..." class="w-full pl-8 pr-3 py-2 rounded-xl border border-pink-100 text-xs focus:outline-none focus:ring-2 focus:ring-pink-200 bg-pink-50/20 text-gray-600">
-                            <span class="absolute left-2.5 top-2.5 text-xs text-pink-300">🔎</span>
+
+                        <!-- รายการเซ็ตการ์ดย่อย -->
+                        <div id="agent-status-list" class="space-y-3 overflow-y-auto max-h-[460px] pr-1 flex-1 custom-scrollbar">
+                            <!-- Dynamic List -->
                         </div>
                     </div>
 
-                    <!-- Filter Set -->
-                    <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
-                        <button onclick="setAgentFilter('all')" id="filter-agent-all" class="px-3 py-1.5 rounded-lg bg-pink-400 text-white font-medium">ทั้งหมด</button>
-                        <button onclick="setAgentFilter('รอการตรวจสอบ')" id="filter-agent-pending" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">รอการตรวจสอบ</button>
-                        <button onclick="setAgentFilter('ผ่านการยืนยัน')" id="filter-agent-approved" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ผ่านการยืนยัน</button>
-                        <button onclick="setAgentFilter('ไม่ผ่านการยืนยัน')" id="filter-agent-rejected" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ไม่ผ่านการยืนยัน</button>
-                    </div>
-
-                    <!-- รายการเซ็ตการ์ดย่อย -->
-                    <div id="agent-status-list" class="space-y-3 overflow-y-auto max-h-[460px] pr-1 flex-1 custom-scrollbar">
-                        <!-- Dynamic List -->
-                    </div>
                 </div>
 
             </div>
 
-            <!-- SUB-TAB 2: Cute Sticky Notes for Agent Rules & Perks (โน้ตเทปพาสเทลน่ารัก) -->
+            <!-- Sub-Tab 2: Sticky Notes for Agent Rules & Perks -->
             <div id="agent-subtab-benefits-content" class="space-y-6 hidden">
                 
                 <div class="text-center space-y-1">
@@ -276,10 +285,8 @@
                     <p class="text-xs text-gray-400">โน้ตแจ้งเงื่อนไข สิทธิพิเศษเว็บเก็บเครดิต และกฎการใช้เรตราคาส่งตัวแทน</p>
                 </div>
 
-                <!-- Sticky Notes Grid Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- Sticky Note 1: ตัวแทนไม่มียอด -->
                     <div class="memo-paper p-5 rounded-2xl border-2 border-rose-200 shadow-md relative transform -rotate-1 hover:rotate-0 transition duration-300 space-y-3">
                         <div class="washi-tape tape-center" style="background-color: var(--tape-pink);"></div>
                         <div class="flex items-center justify-between border-b border-rose-100 pb-2">
@@ -302,7 +309,6 @@
                         </div>
                     </div>
 
-                    <!-- Sticky Note 2: ตัวแทนมียอดไม่ถึง 250 บาท/เดือน -->
                     <div class="memo-paper p-5 rounded-2xl border-2 border-amber-200 shadow-md relative transform rotate-1 hover:rotate-0 transition duration-300 space-y-3">
                         <div class="washi-tape tape-center" style="background-color: var(--tape-yellow);"></div>
                         <div class="flex items-center justify-between border-b border-amber-100 pb-2">
@@ -319,12 +325,11 @@
                             <ul class="space-y-1.5 text-[11px] text-gray-600">
                                 <li class="flex items-center gap-1"><span>✨</span> สามารถปรับแต่งเว็บเก็บเครดิตได้เอง</li>
                                 <li class="flex items-center gap-1"><span>🎁</span> สมัครใช้ฟรีเดือนแรก 1 เดือน!</li>
-                                <li class="flex items-center gap-1"><span>ต</span> ต่ออายุเพียง 10 บาท/เดือน เท่านั้น</li>
+                                <li class="flex items-center gap-1"><span>✨</span> ต่ออายุเพียง 10 บาท/เดือน เท่านั้น</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Sticky Note 3: ตัวแทนมียอดเกิน 250 บาท/เดือน -->
                     <div class="memo-paper p-5 rounded-2xl border-2 border-emerald-200 shadow-md relative transform -rotate-1 hover:rotate-0 transition duration-300 space-y-3">
                         <div class="washi-tape tape-center" style="background-color: var(--tape-mint);"></div>
                         <div class="flex items-center justify-between border-b border-emerald-100 pb-2">
@@ -353,7 +358,7 @@
 
             </div>
 
-            <!-- SUB-TAB 3: Future API Webhook Integrations (ระบบเชื่อมต่อ API ในอนาคต) -->
+            <!-- Sub-Tab 3: API Webhook -->
             <div id="agent-subtab-api-content" class="grid-box p-6 space-y-5 hidden">
                 <div class="washi-tape tape-1" style="background-color: var(--tape-purple);"></div>
                 <div>
@@ -384,14 +389,11 @@
 
         </main>
 
-        <!-- ========================================== -->
-        <!-- VIEW: ADMIN SYSTEM (ระบบฝั่งแอดมิน) -->
-        <!-- ========================================== -->
+        <!-- ================= VIEW: ADMIN ================= -->
         <main id="view-admin" class="space-y-6 hidden">
             
-            <!-- Lock Screen Box -->
             <div id="admin-auth-card" class="grid-box p-8 max-w-sm mx-auto text-center space-y-4 my-10">
-                <div class="wasi-tape tape-center" style="background-color: var(--tape-yellow);"></div>
+                <div class="washi-tape tape-center" style="background-color: var(--tape-yellow);"></div>
                 <div class="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center text-2xl mx-auto text-pink-400 shadow-inner">
                     🔒
                 </div>
@@ -405,10 +407,8 @@
                 </div>
             </div>
 
-            <!-- Admin Dashboard Set (Hidden Until Login) -->
             <div id="admin-dashboard" class="hidden space-y-6">
                 
-                <!-- Stats Overview Grid Set -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="grid-box p-4 text-center border-l-4 border-l-sky-300">
                         <p class="text-xs text-gray-400 font-medium">คำขอทั้งหมด</p>
@@ -428,7 +428,6 @@
                     </div>
                 </div>
 
-                <!-- Admin Action & Table Box -->
                 <div class="grid-box p-5 md:p-6 space-y-4">
                     <div class="washi-tape tape-1" style="background-color: var(--tape-pink);"></div>
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -447,7 +446,6 @@
                         </div>
                     </div>
 
-                    <!-- Admin Filter Set -->
                     <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
                         <button onclick="setAdminFilter('all')" id="filter-admin-all" class="px-3 py-1.5 rounded-lg bg-pink-400 text-white font-medium">ทั้งหมด</button>
                         <button onclick="setAdminFilter('รอการตรวจสอบ')" id="filter-admin-pending" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">รอการตรวจสอบ</button>
@@ -455,7 +453,6 @@
                         <button onclick="setAdminFilter('ไม่ผ่านการยืนยัน')" id="filter-admin-rejected" class="px-3 py-1.5 rounded-lg bg-pink-50 text-pink-500 hover:bg-pink-100 font-medium">ไม่ผ่านการยืนยัน</button>
                     </div>
 
-                    <!-- Table Box Container -->
                     <div class="overflow-x-auto rounded-xl border border-pink-100">
                         <table class="w-full text-left text-xs text-gray-600">
                             <thead class="bg-pink-50/60 text-pink-500 font-semibold tracking-wider">
@@ -471,7 +468,6 @@
                                 </tr>
                             </thead>
                             <tbody id="admin-table-body" class="divide-y divide-pink-50 bg-white">
-                                <!-- Dynamic Rows -->
                             </tbody>
                         </table>
                     </div>
@@ -484,7 +480,7 @@
 
     </div>
 
-    <!-- Modals Box Sets -->
+    <!-- Modals -->
     <div id="modal-image" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="grid-box bg-white max-w-lg w-full p-4 relative space-y-3">
             <div class="flex justify-between items-center border-b border-pink-50 pb-2">
@@ -624,10 +620,23 @@
         function saveDataToStorage() {
             localStorage.setItem('pinkjulieland_requests', JSON.stringify(requestsData));
             updateGlobalCounter();
+            updateAgentDashboardStats();
         }
 
         function updateGlobalCounter() {
             document.getElementById('total-stats-counter').innerText = requestsData.length;
+        }
+
+        function updateAgentDashboardStats() {
+            const pending = requestsData.filter(r => r.verifyStatus === 'รอการตรวจสอบ').length;
+            const approved = requestsData.filter(r => r.verifyStatus === 'ผ่านการยืนยัน').length;
+            const rejected = requestsData.filter(r => r.verifyStatus === 'ไม่ผ่านการยืนยัน').length;
+            const ranked = requestsData.filter(r => r.rankStatus === 'ปรับยศเรียบร้อยแล้ว').length;
+
+            document.getElementById('dash-pending').innerText = pending;
+            document.getElementById('dash-approved').innerText = approved;
+            document.getElementById('dash-rejected').innerText = rejected;
+            document.getElementById('dash-ranked').innerText = ranked;
         }
 
         function switchView(view) {
@@ -643,6 +652,7 @@
                 btnAgent.className = "px-4 py-2 rounded-lg text-xs transition-all tab-btn-active";
                 btnAdmin.className = "px-4 py-2 rounded-lg text-xs transition-all tab-btn-inactive";
                 renderAgentStatusList();
+                updateAgentDashboardStats();
             } else {
                 agentView.classList.add('hidden');
                 adminView.classList.remove('hidden');
@@ -930,6 +940,7 @@
             showToast('อัปเดตข้อมูลสำเร็จ', 'success');
             renderAdminDashboard();
             renderAgentStatusList();
+            updateAgentDashboardStats();
         }
 
         function deleteRequest(id) {
@@ -938,6 +949,7 @@
                 saveDataToStorage();
                 renderAdminDashboard();
                 renderAgentStatusList();
+                updateAgentDashboardStats();
                 showToast('ลบรายการสำเร็จ', 'info');
             }
         }
@@ -959,7 +971,11 @@
         }
 
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-        function renderAllViews() { updateGlobalCounter(); renderAgentStatusList(); }
+        function renderAllViews() { 
+            updateGlobalCounter(); 
+            renderAgentStatusList(); 
+            updateAgentDashboardStats();
+        }
 
         function showToast(msg, type = 'info') {
             const c = document.getElementById('toast-container');
