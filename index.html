@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -10,211 +10,218 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #fcf9fa;
-            --paper: #ffffff;
-            --text-main: #4a4044;
-            --rose-primary: #e07a93;
-            --rose-hover: #d16580;
-            --rose-light: #f7ebee;
+            --bg-ig: #fff5f7;
+            --card-ig: #ffffff;
+            --text-main: #5c4b51;
+            --pink-ig-primary: #ff8fab;
+            --pink-ig-hover: #ff7093;
+            --pink-ig-light: #ffe5ec;
         }
         body {
-            background-color: var(--bg-main);
+            background-color: var(--bg-ig);
             font-family: 'Prompt', sans-serif;
             color: var(--text-main);
             min-height: 100vh;
         }
         .font-sans-eng { font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        .minimal-card {
-            background-color: var(--paper);
-            border-radius: 20px;
-            border: 1px solid #f2e3e6;
-            box-shadow: 0 4px 20px rgba(224, 122, 147, 0.05);
+        .ig-card {
+            background-color: var(--card-ig);
+            border-radius: 28px;
+            border: 1px solid #ffd1dc;
+            box-shadow: 0 10px 30px rgba(255, 143, 171, 0.08);
         }
-        .btn-rose {
-            background-color: var(--rose-primary);
+        .btn-ig {
+            background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
             color: white;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(255, 143, 171, 0.3);
         }
-        .btn-rose:hover {
-            background-color: var(--rose-hover);
+        .btn-ig:hover {
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(255, 143, 171, 0.4);
         }
-        .badge {
+        .ig-badge {
             display: inline-flex;
             align-items: center;
-            padding: 4px 10px;
-            border-radius: 8px;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 500;
         }
-        .badge-pending { background-color: #fef3c7; color: #d97706; }
-        .badge-approved { background-color: #e6fffa; color: #0d9488; }
-        .badge-rejected { background-color: #fff1f2; color: #e11d48; }
+        .badge-pending { background-color: #fff3d6; color: #b45309; }
+        .badge-approved { background-color: #e0f2fe; color: #0284c7; }
+        .badge-rejected { background-color: #ffe4e6; color: #e11d48; }
         
         .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #fdf5f7; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #f0c2cd; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #ffeef2; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #ffb3c6; border-radius: 10px; }
     </style>
 </head>
 <body class="p-4 md:p-8 custom-scrollbar">
 
-    <div class="max-w-4xl mx-auto space-y-6">
+    <div class="max-w-xl mx-auto space-y-6">
         
-        <!-- Navbar มินิมอล -->
-        <nav class="bg-white/80 backdrop-blur-md px-6 py-3.5 rounded-2xl border border-rose-100 flex justify-between items-center text-xs shadow-sm">
-            <div class="flex items-center gap-6">
-                <span class="font-bold text-rose-500 font-sans-eng text-base">🌸 Ginshopz</span>
-                <div class="hidden sm:flex gap-4 text-gray-500">
-                    <a href="#" class="hover:text-rose-500 transition">หน้าแรก</a>
-                    <a href="#" class="hover:text-rose-500 transition">สินค้า</a>
-                    <a href="#" class="hover:text-rose-500 transition">เครดิต</a>
+        <!-- IG Profile Header Box -->
+        <div class="ig-card p-6 text-center space-y-4 relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-pink-200/40 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-pink-100/50 rounded-full blur-2xl"></div>
+
+            <div class="flex justify-between items-center text-xs relative z-10">
+                <span class="font-bold text-pink-500 font-sans-eng text-sm tracking-wide">✨ @ginshopz.official</span>
+                <div class="flex gap-1 bg-pink-50/80 p-1 rounded-full border border-pink-100">
+                    <button id="nav-agent-btn" onclick="switchView('agent')" class="px-3 py-1 rounded-full bg-white text-pink-600 font-semibold shadow-sm transition">ตัวแทน</button>
+                    <button id="nav-admin-btn" onclick="switchView('admin')" class="px-3 py-1 rounded-full text-gray-400 hover:text-pink-500 transition">แอดมิน</button>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
-                <button id="nav-agent-btn" onclick="switchView('agent')" class="px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-600 font-semibold">👤 ตัวแทน</button>
-                <button id="nav-admin-btn" onclick="switchView('admin')" class="px-3.5 py-1.5 rounded-xl bg-gray-50 text-gray-500 hover:bg-gray-100">🔑 แอดมิน</button>
-            </div>
-        </nav>
 
-        <!-- 📊 ภาพรวมสถิติ (3 อย่างตามขอ) -->
-        <div class="grid grid-cols-3 gap-3 md:gap-4">
-            <div class="minimal-card p-4 text-center">
-                <p class="text-xs text-gray-400 font-medium">คำขอยืนยันทั้งหมด</p>
-                <p id="stat-total" class="text-2xl md:text-3xl font-bold font-sans-eng text-gray-700 mt-1">0</p>
+            <div class="space-y-3 relative z-10 pt-2">
+                <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-pink-300 to-rose-400 shadow-md flex items-center justify-center">
+                    <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-2xl">
+                        🌸
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-base font-bold text-gray-700">Pinkjulieland Agent Hub</h1>
+                    <p class="text-xs text-gray-400 mt-0.5">ระบบยืนยันตัวตนตัวแทนจำหน่าย & เช็คคิวอัตโนมัติ 💕</p>
+                </div>
             </div>
-            <div class="minimal-card p-4 text-center border-t-2 border-t-amber-400">
-                <p class="text-xs text-amber-600 font-medium">รอยืนยัน</p>
-                <p id="stat-pending" class="text-2xl md:text-3xl font-bold font-sans-eng text-amber-500 mt-1">0</p>
-            </div>
-            <div class="minimal-card p-4 text-center border-t-2 border-t-emerald-400">
-                <p class="text-xs text-emerald-600 font-medium">ยืนยันแล้ว</p>
-                <p id="stat-approved" class="text-2xl md:text-3xl font-bold font-sans-eng text-emerald-500 mt-1">0</p>
+
+            <div class="grid grid-cols-3 gap-2 pt-2 border-t border-pink-100/60 relative z-10 text-center">
+                <div class="p-2">
+                    <p class="text-[11px] text-gray-400">คำขอทั้งหมด</p>
+                    <p id="stat-total" class="text-lg font-bold font-sans-eng text-gray-700">0</p>
+                </div>
+                <div class="p-2 border-x border-pink-100/60">
+                    <p class="text-[11px] text-amber-600 font-medium">รอยืนยัน</p>
+                    <p id="stat-pending" class="text-lg font-bold font-sans-eng text-amber-500">0</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-[11px] text-sky-600 font-medium">ยืนยันแล้ว</p>
+                    <p id="stat-approved" class="text-lg font-bold font-sans-eng text-sky-500">0</p>
+                </div>
             </div>
         </div>
 
-        <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
-
         <!-- ================= VIEW: AGENT ================= -->
-        <main id="view-agent" class="space-y-6">
+        <main id="view-agent" class="space-y-5">
             
-            <!-- ฟอร์มยืนยันตัวตนตัวแทน -->
-            <div class="minimal-card p-6 md:p-8 space-y-6">
-                <div class="border-b border-rose-50 pb-4">
-                    <h1 class="text-lg font-bold text-rose-500 font-sans-eng">Pinkjulieland Agent Verification</h1>
-                    <p class="text-xs text-gray-400 mt-0.5">กรอกข้อมูลให้ครบถ้วนเพื่อส่งเรื่องให้แอดมินตรวจสอบ</p>
+            <div class="ig-card p-6 space-y-4">
+                <div class="border-b border-pink-100/60 pb-3">
+                    <h2 class="text-sm font-bold text-pink-500 font-sans-eng flex items-center gap-1.5">
+                        <span>📝</span> ยื่นเรื่องยืนยันตัวตนตัวแทน
+                    </h2>
+                    <p class="text-[11px] text-gray-400 mt-0.5">กรอกข้อมูลและแนบรูปหน้าร้านของคุณด้านล่างนี้ได้เลยค่ะ</p>
                 </div>
 
-                <form id="verify-form" onsubmit="handleAgentSubmit(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <form id="verify-form" onsubmit="handleAgentSubmit(event)" class="space-y-3.5 text-xs">
                     <div class="space-y-1">
-                        <label class="block font-semibold text-gray-600">ชื่อยูสเซอร์ตัวแทน <span class="text-rose-400">*</span></label>
-                        <input type="text" id="input-username" required placeholder="เช่น agent_pinky01" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-200 bg-gray-50/50">
+                        <label class="block font-medium text-gray-600">ชื่อยูสเซอร์ตัวแทน <span class="text-pink-400">*</span></label>
+                        <input type="text" id="input-username" required placeholder="เช่น agent_pinky01" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200/70 focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/20">
                     </div>
 
                     <div class="space-y-1">
-                        <label class="block font-semibold text-gray-600">ชื่อไลน์ (Line Display Name) <span class="text-rose-400">*</span></label>
-                        <input type="text" id="input-line-name" required placeholder="เช่น พิงค์กี้ ช็อป" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-200 bg-gray-50/50">
+                        <label class="block font-medium text-gray-600">ชื่อไลน์ (Line Display Name) <span class="text-pink-400">*</span></label>
+                        <input type="text" id="input-line-name" required placeholder="เช่น พิงค์กี้ ช็อป" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200/70 focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/20">
                     </div>
 
                     <div class="space-y-1">
-                        <label class="block font-semibold text-gray-600">ชื่อในกลุ่มตัวแทน <span class="text-rose-400">*</span></label>
-                        <input type="text" id="input-group-name" required placeholder="ชื่อที่ใช้เรียกในกลุ่มไลน์หลัก" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-200 bg-gray-50/50">
+                        <label class="block font-medium text-gray-600">ชื่อในกลุ่มตัวแทน <span class="text-pink-400">*</span></label>
+                        <input type="text" id="input-group-name" required placeholder="ชื่อที่ใช้เรียกในกลุ่มไลน์หลัก" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200/70 focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/20">
                     </div>
 
                     <div class="space-y-1">
-                        <label class="block font-semibold text-gray-600">ต้องการขายให้ใคร <span class="text-rose-400">*</span></label>
-                        <select id="input-target-sale" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-200 bg-white text-gray-700">
+                        <label class="block font-medium text-gray-600">ต้องการขายให้ใคร <span class="text-pink-400">*</span></label>
+                        <select id="input-target-sale" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200/70 focus:outline-none focus:ring-2 focus:ring-pink-300 bg-white text-gray-700">
                             <option value="ขายให้ลูกค้า">ขายให้ลูกค้า</option>
                             <option value="ขายให้ตัวแทน">ขายให้ตัวแทน</option>
                             <option value="ขายให้ลูกค้าและตัวแทน">ขายให้ลูกค้าและตัวแทน</option>
                         </select>
                     </div>
 
-                    <div class="md:col-span-2 space-y-1">
-                        <label class="block font-semibold text-gray-600">รูปภาพหน้าร้าน <span class="text-rose-400">*</span></label>
-                        <div class="border-2 border-dashed border-gray-200 rounded-xl p-4 text-center hover:bg-rose-50/30 transition cursor-pointer" onclick="document.getElementById('input-image').click()">
+                    <div class="space-y-1">
+                        <label class="block font-medium text-gray-600">รูปภาพหน้าร้าน <span class="text-pink-400">*</span></label>
+                        <div class="border-2 border-dashed border-pink-200 rounded-2xl p-4 text-center hover:bg-pink-50/30 transition cursor-pointer" onclick="document.getElementById('input-image').click()">
                             <input type="file" id="input-image" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
-                            <div id="upload-placeholder" class="text-gray-400">
-                                <span class="text-lg">📸</span> คลิ๊กเพื่ออัปโหลดรูปภาพหน้าร้านของคุณ
+                            <div id="upload-placeholder" class="text-gray-400 flex flex-col items-center gap-1">
+                                <span class="text-xl">📸</span>
+                                <span>คลิกเพื่ออัปโหลดรูปภาพหน้าร้าน</span>
                             </div>
                             <div id="upload-preview-wrapper" class="hidden text-emerald-600 font-medium">
-                                ✓ แนบรูปภาพเรียบร้อย (คลิกเพื่อเปลี่ยนรูป)
+                                ✓ แนบรูปภาพหน้าร้านเรียบร้อย
                             </div>
                         </div>
                     </div>
 
-                    <div class="md:col-span-2 pt-2">
-                        <button type="submit" class="w-full py-3 rounded-xl font-semibold btn-rose shadow-sm">
-                            🚀 ส่งข้อมูลยืนยันตัวตน
+                    <div class="pt-2">
+                        <button type="submit" class="w-full py-3 rounded-2xl font-semibold btn-ig text-xs">
+                            ✨ ส่งข้อมูลยืนยันตัวตน
                         </button>
                     </div>
                 </form>
             </div>
 
-            <!-- สิทธิประโยชน์ตัวแทน (Sticky Notes) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="minimal-card p-5 space-y-2 border-l-4 border-l-rose-400 bg-white">
+            <!-- Sticky Notes สิทธิประโยชน์ตัวแทน -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class="ig-card p-4 space-y-1.5 border-l-4 border-l-rose-400 bg-white">
                     <p class="font-bold text-rose-500 text-xs">📌 ตัวแทนเริ่มต้น</p>
-                    <p class="text-xs text-gray-500 leading-relaxed">ซื้อสินค้าในราคาส่งได้ทันที ห้ามซื้อใช้เองเด็ดขาด ฝ่าฝืนปรับ 500 บาท</p>
+                    <p class="text-[11px] text-gray-500 leading-relaxed">ซื้อสินค้าในราคาส่งเพื่อเอาไปขายต่อเท่านั้น ไม่อนุญาตซื้อใช้เองเด็ดขาด ฝ่าฝืนปรับ 500 บาท</p>
                 </div>
-                <div class="minimal-card p-5 space-y-2 border-l-4 border-l-amber-400 bg-white">
+                <div class="ig-card p-4 space-y-1.5 border-l-4 border-l-amber-400 bg-white">
                     <p class="font-bold text-amber-600 text-xs">🎟️ เว็บเก็บเครดิต</p>
-                    <p class="text-xs text-gray-500 leading-relaxed">ใช้เว็บเก็บเครดิตฟรีเดือนแรก ต่ออายุเพียง 10 บาท/เดือน เท่านั้น</p>
+                    <p class="text-[11px] text-gray-500 leading-relaxed">ใช้เว็บเก็บเครดิตฟรีเดือนแรก ต่ออายุเพียง 10 บาท/เดือน เท่านั้น</p>
                 </div>
-                <div class="minimal-card p-5 space-y-2 border-l-4 border-l-emerald-400 bg-white">
-                    <p class="font-bold text-emerald-600 text-xs">👑 VIP สิทธิ์ครบ</p>
-                    <p class="text-xs text-gray-500 leading-relaxed">ยอด 250+/เดือน ใช้เรตราคาส่งซื้อใช้เองได้ และใช้เว็บเครดิตฟรีตลอดชีพ</p>
+                <div class="ig-card p-4 space-y-1.5 border-l-4 border-l-emerald-400 bg-white">
+                    <p class="font-bold text-emerald-600 text-xs">👑 ตัวแทนมียอดสั่งซื้อ</p>
+                    <p class="text-[11px] text-gray-500 leading-relaxed">เมื่อมียอดสั่งซื้อสะสม ปลดล็อกสิทธิ์สามารถซื้อสินค้าใช้เองในราคาส่งตัวแทนได้ทันที!</p>
                 </div>
             </div>
 
-            <!-- ช่องค้นหาคิวของตัวเอง -->
-            <div class="minimal-card p-6 space-y-4">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-rose-50 pb-3">
-                    <h2 class="text-sm font-bold text-rose-500">🔍 ค้นหาคิวและตรวจสอบสถานะของคุณ</h2>
-                    <div class="relative w-full sm:w-60">
-                        <input type="text" id="search-agent-input" oninput="renderAgentStatusList()" placeholder="พิมพ์ยูสเซอร์ของคุณ..." class="w-full pl-8 pr-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-200">
-                        <span class="absolute left-2.5 top-2.5 text-xs text-gray-400">🔎</span>
-                    </div>
+            <div class="ig-card p-6 space-y-3">
+                <div class="flex justify-between items-center border-b border-pink-100/60 pb-3">
+                    <h2 class="text-xs font-bold text-pink-500 uppercase tracking-wider">🔍 ค้นหาคิวและเช็คสถานะของคุณ</h2>
+                </div>
+                <div class="relative">
+                    <input type="text" id="search-agent-input" oninput="renderAgentStatusList()" placeholder="พิมพ์ยูสเซอร์ของคุณเพื่อค้นหา..." class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-pink-200/70 text-xs focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/20">
+                    <span class="absolute left-3 top-3 text-xs text-pink-400">🔎</span>
                 </div>
 
-                <div id="agent-status-list" class="space-y-3">
-                    <!-- รายการคิวจะแสดงตรงนี้ -->
-                </div>
+                <div id="agent-status-list" class="space-y-2.5 pt-1"></div>
             </div>
         </main>
 
         <!-- ================= VIEW: ADMIN ================= -->
-        <main id="view-admin" class="space-y-6 hidden">
-            <div id="admin-auth-card" class="minimal-card p-8 max-w-sm mx-auto text-center space-y-4 my-10">
-                <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-xl mx-auto text-rose-400">🔒</div>
-                <h2 class="text-base font-bold text-rose-500">เข้าสู่ระบบแอดมิน</h2>
-                <div class="space-y-3">
-                    <input type="password" id="admin-password-input" placeholder="รหัสผ่าน (admin123)" class="w-full px-4 py-2.5 text-center text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-200">
-                    <button onclick="handleAdminLogin()" class="w-full py-2.5 rounded-xl font-semibold btn-rose text-xs">เข้าสู่ระบบ</button>
+        <main id="view-admin" class="space-y-4 hidden">
+            <div id="admin-auth-card" class="ig-card p-8 max-w-sm mx-auto text-center space-y-4 my-6">
+                <div class="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center text-lg mx-auto text-pink-500">🔒</div>
+                <h2 class="text-sm font-bold text-pink-500">เข้าสู่ระบบแอดมิน</h2>
+                <div class="space-y-3 text-xs">
+                    <input type="password" id="admin-password-input" placeholder="รหัสผ่าน (admin123)" class="w-full px-4 py-2.5 text-center rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50/20">
+                    <button onclick="handleAdminLogin()" class="w-full py-2.5 rounded-xl font-semibold btn-ig">เข้าสู่ระบบ</button>
                 </div>
             </div>
 
-            <div id="admin-dashboard" class="hidden space-y-6">
-                <div class="minimal-card p-6 space-y-4">
-                    <div class="flex justify-between items-center border-b border-rose-50 pb-3">
-                        <h2 class="text-sm font-bold text-rose-500">📋 จัดการคำขอตัวแทน (Admin Panel)</h2>
-                        <button onclick="logoutAdmin()" class="px-3 py-1.5 rounded-xl bg-gray-100 text-gray-600 text-xs font-semibold">ออก</button>
+            <div id="admin-dashboard" class="hidden space-y-4">
+                <div class="ig-card p-6 space-y-3">
+                    <div class="flex justify-between items-center border-b border-pink-100/60 pb-3">
+                        <h2 class="text-xs font-bold text-pink-500 uppercase">📋 แผงควบคุมแอดมิน</h2>
+                        <button onclick="logoutAdmin()" class="px-3 py-1 rounded-lg bg-gray-100 text-gray-500 text-[11px] font-semibold">ออก</button>
                     </div>
 
-                    <div class="overflow-x-auto rounded-xl border border-gray-100">
+                    <div class="overflow-x-auto rounded-xl border border-pink-100">
                         <table class="w-full text-left text-xs text-gray-600">
-                            <thead class="bg-rose-50/50 text-rose-500 font-semibold border-b border-rose-100">
+                            <thead class="bg-pink-50/60 text-pink-500 font-semibold border-b border-pink-100">
                                 <tr>
-                                    <th class="p-3">เวลา / ID</th>
-                                    <th class="p-3">ยูสเซอร์</th>
-                                    <th class="p-3">ชื่อไลน์ / กลุ่ม</th>
-                                    <th class="p-3">เป้าหมายขาย</th>
-                                    <th class="p-3">รูปหน้าร้าน</th>
-                                    <th class="p-3">สถานะ</th>
-                                    <th class="p-3 text-center">จัดการ</th>
+                                    <th class="p-2.5">เวลา / ID</th>
+                                    <th class="p-2.5">ยูสเซอร์</th>
+                                    <th class="p-2.5">ชื่อไลน์ / กลุ่ม</th>
+                                    <th class="p-2.5">เป้าหมาย</th>
+                                    <th class="p-2.5">หน้าร้าน</th>
+                                    <th class="p-2.5">สถานะ</th>
+                                    <th class="p-2.5 text-center">จัดการ</th>
                                 </tr>
                             </thead>
-                            <tbody id="admin-table-body" class="divide-y divide-gray-50 bg-white"></tbody>
+                            <tbody id="admin-table-body" class="divide-y divide-pink-50 bg-white"></tbody>
                         </table>
                     </div>
                 </div>
@@ -223,41 +230,41 @@
 
     </div>
 
-    <!-- Modal Admin แก้ไขข้อมูล & ขาดเหลืออะไร -->
+    <!-- Modal Admin จัดการ -->
     <div id="modal-edit-status" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="minimal-card bg-white max-w-md w-full p-6 space-y-4">
-            <div class="flex justify-between items-center border-b border-rose-50 pb-3">
-                <h3 class="text-xs font-bold text-rose-500">✏️ ตรวจสอบข้อมูลและแจ้งสิ่งที่ต้องส่งเพิ่ม</h3>
-                <button onclick="closeModal('modal-edit-status')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+        <div class="ig-card bg-white max-w-sm w-full p-5 space-y-3">
+            <div class="flex justify-between items-center border-b border-pink-100 pb-2 text-xs">
+                <h3 class="font-bold text-pink-500">✏️ ตรวจสอบ & แจ้งสิ่งที่ต้องส่งเพิ่ม</h3>
+                <button onclick="closeModal('modal-edit-status')" class="text-gray-400 font-bold">✕</button>
             </div>
             <form id="admin-edit-form" onsubmit="saveAdminStatusUpdate(event)" class="space-y-3 text-xs">
                 <input type="hidden" id="edit-req-id">
                 <div>
-                    <label class="block font-semibold text-gray-600 mb-1">สถานะยืนยัน</label>
-                    <select id="edit-verify-status" onchange="toggleMissingInfo()" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white">
+                    <label class="block font-medium text-gray-600 mb-1">สถานะยืนยัน</label>
+                    <select id="edit-verify-status" onchange="toggleMissingInfo()" class="w-full px-3 py-2 rounded-xl border border-pink-200 bg-white">
                         <option value="รอการตรวจสอบ">รอการตรวจสอบ</option>
                         <option value="ผ่านการยืนยัน">ผ่านการยืนยัน</option>
                         <option value="ไม่ผ่าน / ต้องส่งเพิ่ม">ไม่ผ่าน / ต้องส่งเพิ่มข้อมูล</option>
                     </select>
                 </div>
                 <div id="missing-info-box" class="hidden space-y-1">
-                    <label class="block font-semibold text-rose-500 mb-1">ระบุสิ่งที่ต้องส่งมาเพิ่ม / เหตุผล</label>
-                    <textarea id="edit-missing-reason" rows="3" placeholder="เช่น ขอรูปหน้าร้านที่ชัดเจนขึ้น หรือเปลี่ยนชื่อไลน์..." class="w-full px-3 py-2 rounded-xl border border-rose-200 bg-rose-50/20"></textarea>
+                    <label class="block font-medium text-pink-500 mb-1">ระบุสิ่งที่ต้องส่งมาเพิ่ม</label>
+                    <textarea id="edit-missing-reason" rows="2" placeholder="เช่น ขอรูปหน้าร้านชัดๆ..." class="w-full px-3 py-2 rounded-xl border border-pink-200 bg-pink-50/20"></textarea>
                 </div>
-                <button type="submit" class="w-full py-2.5 rounded-xl btn-rose font-semibold mt-2">บันทึกข้อมูล</button>
+                <button type="submit" class="w-full py-2.5 rounded-xl btn-ig font-semibold mt-1">บันทึกข้อมูล</button>
             </form>
         </div>
     </div>
 
     <!-- Modal ดูรูป -->
     <div id="modal-image" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="minimal-card bg-white max-w-lg w-full p-4 relative space-y-3">
-            <div class="flex justify-between items-center border-b border-rose-50 pb-2">
-                <h3 class="text-xs font-bold text-rose-500">รูปหน้าร้านตัวแทน</h3>
+        <div class="ig-card bg-white max-w-md w-full p-3 relative space-y-2">
+            <div class="flex justify-between items-center border-b border-pink-100 pb-1.5 text-xs">
+                <h3 class="font-bold text-pink-500">รูปหน้าร้านตัวแทน</h3>
                 <button onclick="closeModal('modal-image')" class="text-gray-400 font-bold">✕</button>
             </div>
-            <div class="flex justify-center bg-gray-50 p-2 rounded-xl">
-                <img id="modal-image-src" src="" class="max-h-[70vh] rounded-lg object-contain">
+            <div class="flex justify-center bg-pink-50/30 p-2 rounded-xl">
+                <img id="modal-image-src" src="" class="max-h-[60vh] rounded-lg object-contain">
             </div>
         </div>
     </div>
@@ -276,13 +283,13 @@
         });
 
         function saveData() {
-            localStorage.setItem('ginshopz_reqs', JSON.stringify(requestsData));
+            localStorage.setItem('ginshopz_reqs_ig', JSON.stringify(requestsData));
             renderAllViews();
         }
 
         function renderAllViews() {
             const total = requestsData.length;
-            const pending = requestsData.filter(r => r.verifyStatus === 'รอการตรวจสอบ').lenth || requestsData.filter(r => r.verifyStatus === 'รอการตรวจสอบ').length;
+            const pending = requestsData.filter(r => r.verifyStatus === 'รอการตรวจสอบ').length;
             const approved = requestsData.filter(r => r.verifyStatus === 'ผ่านการยืนยัน').length;
 
             document.getElementById('stat-total').innerText = total;
@@ -297,8 +304,8 @@
             currentView = view;
             document.getElementById('view-agent').classList.toggle('hidden', view !== 'agent');
             document.getElementById('view-admin').classList.toggle('hidden', view !== 'admin');
-            document.getElementById('nav-agent-btn').className = view === 'agent' ? "px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-600 font-semibold" : "px-3.5 py-1.5 rounded-xl bg-gray-50 text-gray-500 hover:bg-gray-100";
-            document.getElementById('nav-admin-btn').className = view === 'admin' ? "px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-600 font-semibold" : "px-3.5 py-1.5 rounded-xl bg-gray-50 text-gray-500 hover:bg-gray-100";
+            document.getElementById('nav-agent-btn').className = view === 'agent' ? "px-3 py-1 rounded-full bg-white text-pink-600 font-semibold shadow-sm transition" : "px-3 py-1 rounded-full text-gray-400 hover:text-pink-500 transition";
+            document.getElementById('nav-admin-btn').className = view === 'admin' ? "px-3 py-1 rounded-full bg-white text-pink-600 font-semibold shadow-sm transition" : "px-3 py-1 rounded-full text-gray-400 hover:text-pink-500 transition";
         }
 
         function handleImageSelect(e) {
@@ -338,27 +345,26 @@
             alert('ส่งข้อมูลยืนยันสำเร็จ!');
         }
 
-        // หน้าเช็คคิวตัวแทน (ซ่อนข้อมูลส่วนตัว โชว์เฉพาะยูสเซอร์และสถานะ)
         function renderAgentStatusList() {
             const container = document.getElementById('agent-status-list');
             const keyword = document.getElementById('search-agent-input').value.toLowerCase().trim();
             const filtered = requestsData.filter(r => r.username.toLowerCase().includes(keyword));
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div class="text-center py-6 text-gray-400 text-xs">ไม่พบข้อมูลคิวในระบบ</div>`;
+                container.innerHTML = `<div class="text-center py-4 text-gray-400 text-xs">ไม่พบข้อมูลคิวในระบบ</div>`;
                 return;
             }
 
             container.innerHTML = filtered.map(r => {
                 let badge = r.verifyStatus === 'ผ่านการยืนยัน' ? 'badge-approved' : r.verifyStatus.includes('ไม่ผ่าน') ? 'badge-rejected' : 'badge-pending';
                 return `
-                    <div class="p-4 rounded-xl border border-rose-100 bg-white space-y-2 text-xs">
+                    <div class="p-3.5 rounded-2xl border border-pink-100 bg-pink-50/10 space-y-1.5 text-xs">
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-rose-500 text-sm">${r.username}</span>
-                            <span class="badge ${badge}">${r.verifyStatus}</span>
+                            <span class="font-bold text-pink-600">@${r.username}</span>
+                            <span class="ig-badge ${badge}">${r.verifyStatus}</span>
                         </div>
-                        <div class="text-gray-400 text-[11px]">ยื่นเรื่องเมื่อ: ${r.timestamp}</div>
-                        ${r.missingReason ? `<div class="bg-rose-50 p-2.5 rounded-xl text-rose-600 font-medium">⚠️ แอดมินแจ้งเพิ่มเติม: ${r.missingReason}</div>` : ''}
+                        <div class="text-gray-400 text-[10px]">ยื่นเรื่องเมื่อ: ${r.timestamp}</div>
+                        ${r.missingReason ? `<div class="bg-rose-50 p-2 rounded-xl text-rose-600 font-medium">⚠️ แอดมินแจ้ง: ${r.missingReason}</div>` : ''}
                     </div>
                 `;
             }).join('');
@@ -382,14 +388,14 @@
         function renderAdminTable() {
             const tbody = document.getElementById('admin-table-body');
             tbody.innerHTML = requestsData.map(r => `
-                <tr class="hover:bg-rose-50/20">
-                    <td class="p-3 text-[10px] text-gray-400">${r.timestamp}<br><span class="font-mono">${r.id}</span></td>
-                    <td class="p-3 font-bold text-rose-600">${r.username}</td>
-                    <td class="p-3">${r.lineName}<br><span class="text-gray-400">กลุ่ม: ${r.groupName}</span></td>
-                    <td class="p-3 text-gray-600">${r.targetSale}</td>
-                    <td class="p-3"><button onclick="openImageModal('${r.image}')" class="px-2 py-1 bg-rose-50 text-rose-600 rounded">ดูรูป</button></td>
-                    <td class="p-3"><span class="badge ${r.verifyStatus === 'ผ่านการยืนยัน' ? 'badge-approved' : 'badge-pending'}">${r.verifyStatus}</span></td>
-                    <td class="p-3 text-center"><button onclick="openAdminEdit('${r.id}')" class="px-3 py-1 bg-rose-500 text-white rounded-lg font-medium">จัดการ</button></td>
+                <tr class="hover:bg-pink-50/20">
+                    <td class="p-2.5 text-[10px] text-gray-400">${r.timestamp}<br><span class="font-mono">${r.id}</span></td>
+                    <td class="p-2.5 font-bold text-pink-600">@${r.username}</td>
+                    <td class="p-2.5">${r.lineName}<br><span class="text-gray-400">กลุ่ม: ${r.groupName}</span></td>
+                    <td class="p-2.5 text-gray-600">${r.targetSale}</td>
+                    <td class="p-2.5"><button onclick="openImageModal('${r.image}')" class="px-2 py-0.5 bg-pink-100 text-pink-600 rounded">ดูรูป</button></td>
+                    <td class="p-2.5"><span class="ig-badge ${r.verifyStatus === 'ผ่านการยืนยัน' ? 'badge-approved' : 'badge-pending'}">${r.verifyStatus}</span></td>
+                    <td class="p-2.5 text-center"><button onclick="openAdminEdit('${r.id}')" class="px-2.5 py-1 bg-pink-400 text-white rounded-lg font-medium">จัดการ</button></td>
                 </tr>
             `).join('');
         }
